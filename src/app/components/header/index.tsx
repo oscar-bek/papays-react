@@ -17,7 +17,7 @@ export function NavbarHome(props: any) {
         </Box>
         <Stack 
           flexDirection={"row"} 
-          justifyContent="space-evenly" 
+          justifyContent={"space-evenly"} 
           alignItems={"center"}
           className="navbar_links">
 

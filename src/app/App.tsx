@@ -1,8 +1,7 @@
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
-import React from "react";
+import React, { useState } from "react";
 import '../css/App.css';
-
-
+import '../css/navbar.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,14 +16,25 @@ import { MemberPage } from './screens/MemberPage';
 import { HelpPage } from './screens/HelpPage';
 import { LoginPage } from './screens/LoginPage';
 import { HomePage } from './screens/HomePage';
-
-
+import { NavbarHome } from './components/header';
+import { NavbarRestaurant } from './components/header/restaurant';
+import { NavbarOthers } from './components/header/others';
 
 function App() {
+  const [path, setPath] = useState();
+  const main_path = window.location.pathname;
+  
   return (
     <Router>
-    <div>
-      <nav>
+  {main_path =='/' ? (
+     <NavbarHome setPath={setPath} />
+     ) : main_path.includes("/restaurant") ? (
+     <NavbarRestaurant setPath={setPath}/>
+     ) : (
+      <NavbarOthers setPath={setPath}/>
+      )
+  }
+      {/* <nav>
         <ul>
           <li>
             <Link to="/restaurant">RestaurantPage</Link>
@@ -49,7 +59,7 @@ function App() {
           </li>
           
         </ul>
-      </nav>
+      </nav> */}
 
       <Switch>
         <Route path="/restaurant">
@@ -74,7 +84,7 @@ function App() {
              <HomePage />
         </Route>
       </Switch>
-    </div>
+  
   </Router>
 
   );

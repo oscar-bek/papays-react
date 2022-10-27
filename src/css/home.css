@@ -46,7 +46,7 @@
   font-size: 20px;
   line-height: 30px;
   text-align: center;
-  color: #e3c0Bd;
+  color: #e3c08d;
 }
 
 .homepage .static_box .static_num {
@@ -63,6 +63,7 @@
   width: 100%;
   height: 605px;
   display: flex;
+  
   background: #0b0e11;
 }
 
@@ -72,5 +73,5 @@
   font-weight: 700;
   font-size: 36px;
   line-height: 42px;
-  color: #FFFFFF;
+  color: #e3c08d;
 }

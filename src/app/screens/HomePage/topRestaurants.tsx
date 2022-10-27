@@ -1,15 +1,13 @@
+import React from "react";
 import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
-import { Box, Container, Stack} from "@mui/material";
-import React from "react";
-
+import { Box, Container, Stack } from "@mui/material";
 import { CssVarsProvider } from "@mui/joy/styles";
 import { CardOverflow, IconButton } from "@mui/joy";
-import { Favorite } from "@mui/icons-material";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import { Favorite, Visibility } from "@mui/icons-material";
 
 export function TopRestaurants() {
   return (
@@ -24,9 +22,10 @@ export function TopRestaurants() {
           <Stack sx={{ mt: "43px" }} flexDirection={"row"} m={"16px"}>
             <CssVarsProvider>
               <Card
+                variant="outlined"
                 sx={{
-                  minHeight: 430,
-                  minwidth: 325,
+                  minHeight: 483,
+                  minWidth: 320,
                   mr: "35px",
                   cursor: "pointer",
                 }}
@@ -41,7 +40,12 @@ export function TopRestaurants() {
                   }}
                 />
                 <CardContent sx={{ justifyContent: "flex-end" }}>
-                  <Typography level="h2" fontSize="lg" textColor="#fff" mb={1}>
+                  <Typography
+                    level="h2"
+                    fontSize="lg"
+                    textColor="#ffffff"
+                    mb={1}
+                  >
                     Texas De Brazil
                   </Typography>
                   <Typography
@@ -70,7 +74,7 @@ export function TopRestaurants() {
                       zIndex: 2,
                       borderRadius: "50%",
                       right: "1rem",
-                      bottom: 30,
+                      bottom: 45,
                       transform: "translateY(50%)",
                       color: "rgba(0,0,0,.4)",
                     }}
@@ -88,25 +92,27 @@ export function TopRestaurants() {
                     }}
                   >
                     100
-                    <VisibilityIcon sx={{ fontSize: 20, marginLeft: "5px" }}/>
+                    <Visibility sx={{ fontSize: 20, marginLeft: "5px" }} />
                   </Typography>
-                  <Box sx={{width: 2, bgcolor: "divider"}}/>
+                  <Box sx={{ width: 2, bgcolor: "divider" }} />
                   <Typography
-                    sx={{ 
+                    sx={{
                       fontWeight: "md",
                       color: "neutral.300",
                       alignItems: "center",
                       display: "flex",
-                    }}>
-                      <div>50</div>
-                      <Favorite sx={{ fontSize: 20, marginLeft: "5px"}} />
-                    </Typography>
+                    }}
+                  >
+                    <div>50</div>
+                    <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
+                  </Typography>
                 </CardOverflow>
               </Card>
               <Card
+                variant="outlined"
                 sx={{
-                  minHeight: 430,
-                  minwidth: 325,
+                  minHeight: 483,
+                  minWidth: 320,
                   mr: "35px",
                   cursor: "pointer",
                 }}
@@ -150,7 +156,7 @@ export function TopRestaurants() {
                       zIndex: 2,
                       borderRadius: "50%",
                       right: "1rem",
-                      bottom: 30,
+                      bottom: 45,
                       transform: "translateY(50%)",
                       color: "rgba(0,0,0,.4)",
                     }}
@@ -168,25 +174,27 @@ export function TopRestaurants() {
                     }}
                   >
                     100
-                    <VisibilityIcon sx={{ fontSize: 20, marginLeft: "5px" }}/>
+                    <Visibility sx={{ fontSize: 20, marginLeft: "5px" }} />
                   </Typography>
-                  <Box sx={{width: 2, bgcolor: "divider"}}/>
+                  <Box sx={{ width: 2, bgcolor: "divider" }} />
                   <Typography
-                    sx={{ 
+                    sx={{
                       fontWeight: "md",
                       color: "neutral.300",
                       alignItems: "center",
                       display: "flex",
-                    }}>
-                      <div>50</div>
-                      <Favorite sx={{ fontSize: 20, marginLeft: "5px"}} />
-                    </Typography>
+                    }}
+                  >
+                    <div>50</div>
+                    <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
+                  </Typography>
                 </CardOverflow>
               </Card>
               <Card
+                variant="outlined"
                 sx={{
-                  minHeight: 430,
-                  minwidth: 325,
+                  minHeight: 483,
+                  minWidth: 320,
                   mr: "35px",
                   cursor: "pointer",
                 }}
@@ -230,7 +238,7 @@ export function TopRestaurants() {
                       zIndex: 2,
                       borderRadius: "50%",
                       right: "1rem",
-                      bottom: 30,
+                      bottom: 45,
                       transform: "translateY(50%)",
                       color: "rgba(0,0,0,.4)",
                     }}
@@ -248,25 +256,27 @@ export function TopRestaurants() {
                     }}
                   >
                     100
-                    <VisibilityIcon sx={{ fontSize: 20, marginLeft: "5px" }}/>
+                    <Visibility sx={{ fontSize: 20, marginLeft: "5px" }} />
                   </Typography>
-                  <Box sx={{width: 2, bgcolor: "divider"}}/>
+                  <Box sx={{ width: 2, bgcolor: "divider" }} />
                   <Typography
-                    sx={{ 
+                    sx={{
                       fontWeight: "md",
                       color: "neutral.300",
                       alignItems: "center",
                       display: "flex",
-                    }}>
-                      <div>50</div>
-                      <Favorite sx={{ fontSize: 20, marginLeft: "5px"}} />
-                    </Typography>
+                    }}
+                  >
+                    <div>50</div>
+                    <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
+                  </Typography>
                 </CardOverflow>
               </Card>
               <Card
+                variant="outlined"
                 sx={{
-                  minHeight: 430,
-                  minwidth: 325,
+                  minHeight: 483,
+                  minWidth: 320,
                   mr: "35px",
                   cursor: "pointer",
                 }}
@@ -310,7 +320,7 @@ export function TopRestaurants() {
                       zIndex: 2,
                       borderRadius: "50%",
                       right: "1rem",
-                      bottom: 30,
+                      bottom: 45,
                       transform: "translateY(50%)",
                       color: "rgba(0,0,0,.4)",
                     }}
@@ -328,25 +338,28 @@ export function TopRestaurants() {
                     }}
                   >
                     100
-                    <VisibilityIcon sx={{ fontSize: 20, marginLeft: "5px" }}/>
+                    <Visibility sx={{ fontSize: 20, marginLeft: "5px" }} />
                   </Typography>
-                  <Box sx={{width: 2, bgcolor: "divider"}}/>
+                  <Box sx={{ width: 2, bgcolor: "divider" }} />
                   <Typography
-                    sx={{ 
+                    sx={{
                       fontWeight: "md",
                       color: "neutral.300",
                       alignItems: "center",
                       display: "flex",
-                    }}>
-                      <div>50</div>
-                      <Favorite sx={{ fontSize: 20, marginLeft: "5px"}} />
-                    </Typography>
+                    }}
+                  >
+                    <div>50</div>
+                    <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
+                  </Typography>
                 </CardOverflow>
               </Card>
             </CssVarsProvider>
           </Stack>
+
+        
         </Stack>
       </Container>
     </div>
-  )
+  );
 }

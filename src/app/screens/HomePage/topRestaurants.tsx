@@ -356,8 +356,6 @@ export function TopRestaurants() {
               </Card>
             </CssVarsProvider>
           </Stack>
-
-        
         </Stack>
       </Container>
     </div>

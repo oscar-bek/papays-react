@@ -1,13 +1,16 @@
+.homepage {
+  background: #0b0e11;
+}
+
 .homepage .static_frame {
   width: 100%;
   background: #2c261e;
-
 }
 
 .homepage .personage_img.left {
   width: 204px;
   height: 200px;
-  background: url('/public/home/papays.png');
+  background: url("/public/home/papays.png");
   transform: matrix(1, 0, 0, 1, 0, 0);
   background-size: cover;
 }
@@ -15,7 +18,7 @@
 .homepage .personage_img.right {
   width: 204px;
   height: 200px;
-  background: url('/public/home/papays.png');
+  background: url("/public/home/papays.png");
   transform: matrix(-1, 0, 0, 1, 0, 0);
   background-size: cover;
 }
@@ -30,17 +33,17 @@
 }
 
 .homepage .static_box .static_num {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
   font-size: 54px;
   line-height: 81px;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .homepage .static_box .static_text {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -50,24 +53,24 @@
 }
 
 .homepage .static_box .static_num {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
   font-size: 54px;
   line-height: 81px;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .homepage .top_restaurant_frame {
   width: 100%;
-  height: 605px;
+  height: 660px;
   display: flex;
   background: #0b0e11;
 }
 
 .homepage .category_title {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
   font-size: 36px;
@@ -77,7 +80,7 @@
 
 .homepage .best_restaurant_frame {
   width: 100%;
-  height: 755px;
+  height: 775px;
   display: flex;
   background: #0b0e11;
 }

@@ -9,7 +9,7 @@ import {
   Link,
   Typography,
 } from "@mui/joy";
-import { Box, Container, Stack,  Button } from "@mui/material";
+import { Box, Container, Stack, Button } from "@mui/material";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import CallIcon from "@mui/icons-material/Call";
 
@@ -20,7 +20,7 @@ export function BestRestaurants() {
         src={"icons/line_group.svg"}
         style={{ position: "absolute", left: "6%" }}
       />
-      <Container sx={{ paddingTop: "153px", }}>
+      <Container sx={{ paddingTop: "153px" }}>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className="category_title">Zo'r Restaurantlar</Box>
           <Stack sx={{ mt: "43px" }} flexDirection={"row"}>
@@ -371,7 +371,7 @@ export function BestRestaurants() {
           <Stack
             flexDirection={"row"}
             justifyContent="flex-end"
-            style={{ width: "100%", marginTop: "16px"}}
+            style={{ width: "100%", marginTop: "16px" }}
           >
             <Button style={{ background: "#1976d2", color: "#ffffff" }}>
               Barchsini ko'rish

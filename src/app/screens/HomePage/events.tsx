@@ -2,9 +2,9 @@ import React from "react";
 import { Box, Container, Stack } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper";
-
 export function Events() {
-  const events_list = [
+
+const events_list = [
     {
       title: "Boyin Foodga marahamat",
       desc: "Yangicha uslubda Yangicha Tam va Yangicha hissiyot",

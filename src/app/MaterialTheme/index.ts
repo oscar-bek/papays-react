@@ -14,11 +14,11 @@ const light = {
       paper: common.white,
     },
     primary: {
-      contrastText: "#ffffff",
-      main: "#c40909",
+      contrastText: "#f4f6f8",
+      main: "#1976d2",
     },
     secondary: {
-      main: "#0383a3",
+      main: "#c40909",
     },
     text: {
       primary: "#172b4d",
@@ -31,7 +31,8 @@ const light = {
       styleOverrides: {
         root: {
           height: "100%",
-          // background: "#c40909",
+
+          background: "#c40909",
         },
       },
     },

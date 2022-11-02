@@ -23,11 +23,11 @@ export function BestRestaurants() {
       <Container sx={{ paddingTop: "153px" }}>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className="category_title">Zo'r Restaurantlar</Box>
-          <Stack sx={{ mt: "43px" }} flexDirection={"row"}>
+          <Stack sx={{ mt: "33px" }} flexDirection={"row"}>
             <CssVarsProvider>
               <Card
                 variant="outlined"
-                sx={{ minHeight: 483, minWidth: 320, mr: "35px" }}
+                sx={{ minHeight: 473, minWidth: 320, mr: "35px" }}
               >
                 <CardOverflow>
                   <AspectRatio ratio={1}>
@@ -51,7 +51,7 @@ export function BestRestaurants() {
                     <Favorite style={{ fill: "white" }} />
                   </IconButton>
                 </CardOverflow>
-                <Typography level="h2" sx={{ fontsize: "md", mt: 2 }}>
+                <Typography level="h2" sx={{ fontsize: "sm", mt: 2 }}>
                   Texas De Brazil Restaurant
                 </Typography>
                 <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
@@ -221,7 +221,7 @@ export function BestRestaurants() {
                     <Favorite style={{ fill: "white" }} />
                   </IconButton>
                 </CardOverflow>
-                <Typography level="h2" sx={{ fontsize: "md", mt: 2 }}>
+                <Typography level="h2" sx={{ fontsize: "", mt: 2 }}>
                   Texas De Brazil Restaurant
                 </Typography>
                 <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
@@ -371,10 +371,10 @@ export function BestRestaurants() {
           <Stack
             flexDirection={"row"}
             justifyContent="flex-end"
-            style={{ width: "100%", marginTop: "16px" }}
+            style={{ width: "100%", marginTop: "26px"}}
           >
             <Button style={{ background: "#1976d2", color: "#ffffff" }}>
-              Barchsini ko'rish
+              Barchasini ko'rish
             </Button>
           </Stack>
         </Stack>

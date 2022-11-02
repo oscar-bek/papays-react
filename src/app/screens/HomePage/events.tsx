@@ -51,7 +51,7 @@ const events_list = [
               src={"/icons/arrow_right2.svg"}
               className={"swiper-button-prev"}
             />
-            <div className={"swiper-pagination dot_frame_pagination "}></div>
+            <div className={" dot_frame_pagination swiper-pagination "}></div>
             <img
               src={"/icons/arrow_right2.svg"}
               className={"swiper-button-next"}

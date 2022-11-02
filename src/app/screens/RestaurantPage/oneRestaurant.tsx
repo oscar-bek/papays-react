@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, Container, Stack } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import StarIcon from "@mui/icons-material/Star";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,11 +11,17 @@ import Favorite from "@mui/icons-material/Favorite";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Badge from "@mui/material/Badge";
+import { Navigation, Thumbs,  FreeMode } from "swiper";
+
+
+
+
 
 const restaurant_list = Array.from(Array(10).keys());
 const product_list = Array.from(Array(8).keys());
 
 export function OneRestaurant() {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <div className={"single_restaurant"}>
       <Container>
@@ -48,22 +54,21 @@ export function OneRestaurant() {
             flexDirection={"row"}
             sx={{ mt: "35px" }}
           >
-            <Box className={"restaurant-prev prev_btn "}>
-              <ArrowBackIosIcon
+            {/* <Box className={"prev_btn restaurant-prev"}>
+              <ArrowBackIosNewIcon
                 sx={{ fontSize: 40 }}
                 style={{ color: "white" }}
               />
-            </Box>
+            </Box> */}
 
             <Swiper
               className={"restaurant_avatars_wrapper"}
-              slidesPerView={4}
-              centeredSlides={false}
-              spaceBetween={30}
-              navigation={{
-                nextEl: ".restaurant_next",
-                prevEl: ".restaurant_prev",
-              }}
+              slidesPerView={7}
+              loop={true}
+              spaceBetween={10}
+              navigation={true}
+              thumbs={{ swiper: thumbsSwiper }}
+              modules={[FreeMode, Navigation, Thumbs]}
             >
               {restaurant_list.map((ele, index) => {
                 return (
@@ -78,12 +83,12 @@ export function OneRestaurant() {
                 );
               })}
             </Swiper>
-            <Box
-              className={" restaurant-next next_btn "}
+            {/* <Box
+              className={"next_btn restaurant-next"}
               style={{ color: "white" }}
             >
               <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
-            </Box>
+            </Box> */}
           </Stack>
 
           <Stack
@@ -226,8 +231,8 @@ export function OneRestaurant() {
                     <StarIcon style={{ color: "#F2BD57" }} />
                     <StarIcon style={{ color: "#F2BD57" }} />
                     <StarIcon style={{ color: "#F2BD57" }} />
-                    <StarIcon style={{ color: "#whitesmoke" }} />
-                    <StarIcon style={{ color: "#whitesmoke" }} />
+                    <StarIcon style={{ color: "#white" }} />
+                    <StarIcon style={{ color: "#white" }} />
                   </div>
                 </Box>
               );

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Box, Container, Stack } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper";
+
+
 export function Events() {
 
 const events_list = [
@@ -51,7 +53,7 @@ const events_list = [
               src={"/icons/arrow_right2.svg"}
               className={"swiper-button-prev"}
             />
-            <div className={" dot_frame_pagination swiper-pagination "}></div>
+            <div className={" swiper-pagination  dot_frame_pagination"}></div>
             <img
               src={"/icons/arrow_right2.svg"}
               className={"swiper-button-next"}
@@ -59,7 +61,7 @@ const events_list = [
             />
           </Box>
           <Swiper
-            className={"events_info swiper-wrapper"}
+            className={"swiper-wrapper events_info "}
             slidesPerView={"auto"}
             spaceBetween={30}
             centeredSlides={true}
@@ -69,7 +71,7 @@ const events_list = [
             }}
             pagination={{
               el: ".swiper-pagination",
-              clickable: true,
+              clickable: true
             }}
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}

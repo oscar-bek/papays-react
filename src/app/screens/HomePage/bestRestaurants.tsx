@@ -51,7 +51,7 @@ export function BestRestaurants() {
                     <Favorite style={{ fill: "white" }} />
                   </IconButton>
                 </CardOverflow>
-                <Typography level="h2" sx={{ fontsize: "sm", mt: 2 }}>
+                <Typography level="h2" sx={{ fontsize: "md", mt: 2 }}>
                   Texas De Brazil Restaurant
                 </Typography>
                 <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
@@ -371,7 +371,7 @@ export function BestRestaurants() {
           <Stack
             flexDirection={"row"}
             justifyContent="flex-end"
-            style={{ width: "100%", marginTop: "26px"}}
+            style={{ width: "100%", marginTop: "26px" }}
           >
             <Button style={{ background: "#1976d2", color: "#ffffff" }}>
               Barchasini ko'rish

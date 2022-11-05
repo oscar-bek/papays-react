@@ -54,12 +54,7 @@ export function OneRestaurant() {
             flexDirection={"row"}
             sx={{ mt: "35px" }}
           >
-            {/* <Box className={"prev_btn restaurant-prev"}>
-              <ArrowBackIosNewIcon
-                sx={{ fontSize: 40 }}
-                style={{ color: "white" }}
-              />
-            </Box> */}
+          
 
             <Swiper
               className={"restaurant_avatars_wrapper"}
@@ -70,6 +65,12 @@ export function OneRestaurant() {
               thumbs={{ swiper: thumbsSwiper }}
               modules={[FreeMode, Navigation, Thumbs]}
             >
+                <Box className={"prev_btn restaurant-prev"}>
+              <ArrowBackIosNewIcon
+                sx={{ fontSize: 40 }}
+                style={{ color: "white" }}
+              />
+            </Box>
               {restaurant_list.map((ele, index) => {
                 return (
                   <SwiperSlide
@@ -82,13 +83,14 @@ export function OneRestaurant() {
                   </SwiperSlide>
                 );
               })}
-            </Swiper>
-            {/* <Box
+              <Box
               className={"next_btn restaurant-next"}
               style={{ color: "white" }}
             >
               <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
-            </Box> */}
+            </Box>
+            </Swiper>
+            
           </Stack>
 
           <Stack

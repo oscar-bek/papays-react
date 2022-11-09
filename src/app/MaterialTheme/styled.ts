@@ -24,7 +24,7 @@ export const RippleBadge = styled(Badge)(({ theme }) => ({
       opacity: 1,
     },
     "100%": {
-      transform: "scale(4.4)",
+      transform: "scale(2.4)",
       opacity: 0,
     },
   },

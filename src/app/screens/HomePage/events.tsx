@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import { Box, Container, Stack } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper";
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
+SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 
 export function Events() {
-
 const events_list = [
     {
       title: "Boyin Foodga marahamat",
@@ -33,7 +33,7 @@ const events_list = [
     },
     {
       title: "Yangicha Yondashuv Endi O'zbekistonda",
-      desc: "O'zbekistondagi eng yirik ulgurji bozor.\n",
+      desc: "🥬 O'zbekistondagi eng yirik ulgurji bozor.\n",
       author: "Food City",
       date: "2022/08/01",
       location: "Toshkent, Yangi Qo'yliq bozori",
@@ -53,7 +53,7 @@ const events_list = [
               src={"/icons/arrow_right2.svg"}
               className={"swiper-button-prev"}
             />
-            <div className={" swiper-pagination  dot_frame_pagination"}></div>
+            <div className={" dot_frame_pagination swiper-pagination "}></div>
             <img
               src={"/icons/arrow_right2.svg"}
               className={"swiper-button-next"}
@@ -61,20 +61,22 @@ const events_list = [
             />
           </Box>
           <Swiper
-            className={"swiper-wrapper events_info "}
+            className={"events_info swiper-wrapper"}
             slidesPerView={"auto"}
-            spaceBetween={30}
             centeredSlides={true}
-            autoplay={{
-              delay: 2000,
-              disableOnInteraction: false,
+            spaceBetween={30}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
             }}
             pagination={{
               el: ".swiper-pagination",
-              clickable: true
+              clickable: true,
             }}
-            navigation={true}
-            modules={[Autoplay, Pagination, Navigation]}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: true,
+            }}
           >
             {events_list.map((value, number) => {
               return (
@@ -119,7 +121,7 @@ const events_list = [
                             <img
                               src={"/icons/location.svg"}
                               style={{ marginRight: "10px" }}
-                            />{" "}
+                            />
                             {value.location}
                           </div>
                         </div>

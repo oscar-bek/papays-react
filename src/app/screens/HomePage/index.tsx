@@ -11,9 +11,12 @@ import '../../../css/home.css';
 
 export function HomePage() {
 
-  useEffect(() => {
-    console.log("componentDidMount => Data fetch");
+  // selector: store => data
 
+  useEffect(() => {
+   // backend data request => data
+
+ // slice: data => store
     return () => {
       console.log("componentWillMount => Process");
     }

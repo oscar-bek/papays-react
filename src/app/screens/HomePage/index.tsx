@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Container } from "@mui/system";
 import { Statistics } from "./statistics";
 import { TopRestaurants } from "./topRestaurants";
@@ -10,6 +10,15 @@ import { Events } from "./events";
 import '../../../css/home.css';
 
 export function HomePage() {
+
+  useEffect(() => {
+    console.log("componentDidMount => Data fetch");
+
+    return () => {
+      console.log("componentWillMount => Process");
+    }
+  }, []);
+
 return (
   <div className="homepage">
     <Statistics/>

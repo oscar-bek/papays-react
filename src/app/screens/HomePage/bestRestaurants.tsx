@@ -61,9 +61,12 @@ export function BestRestaurants() {
 											{ele.mb_nick}
 										</Typography>
 										<Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
-											<Link href="" startDecorator={<LocationOnRoundedIcon />} textColor="neutral.700">
-												{ele.mb_address}
-											</Link>
+                    <Link
+                        href=""
+                        startDecorator={<LocationOnRoundedIcon />}
+                        textColor="neutral.700">
+                        {ele.mb_address}
+                      </Link>
 										</Typography>
 										<Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
 											<Link href="" startDecorator={<CallIcon />} textColor="neutral.700">

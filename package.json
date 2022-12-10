@@ -23,6 +23,8 @@
     "@types/redux-logger": "^3.0.9",
     "@types/styled-components": "^5.1.26",
     "add": "^2.0.6",
+    "assert": "^2.0.0",
+    "axios": "^1.2.1",
     "components": "^0.1.0",
     "format": "^0.2.2",
     "moment": "^2.29.4",

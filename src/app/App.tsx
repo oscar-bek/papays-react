@@ -19,10 +19,11 @@ import { MemberPage } from "./screens/MemberPage";
 import { HelpPage } from "./screens/HelpPage";
 import { LoginPage } from "./screens/LoginPage";
 import { HomePage } from "./screens/HomePage";
-import { NavbarHome } from "./components/header";
-import { NavbarRestaurant } from "./components/header/restaurant";
-import { NavbarOthers } from "./components/header/others";
+import { NavbarHome } from "./components/headers";
+import { NavbarRestaurant } from "./components/headers/restaurant";
+import { NavbarOthers } from "./components/headers/others";
 import { Footer } from "./components/footer";
+import AuthenticationModal from "./components/auth";
 
 function App() {
   const [path, setPath] = useState();
@@ -63,6 +64,9 @@ function App() {
       </Switch>
 
       <Footer />
+
+      <AuthenticationModal/>
+      
     </Router>
   );
 }

@@ -6,6 +6,9 @@ import { Member } from "../../types/user";
 import { MemberLiken } from "../../types/others";
 
 class MemberApiService {
+  memberApiService() {
+    throw new Error("Method not implemented.");
+  }
   private readonly path: string;
 
   constructor() {

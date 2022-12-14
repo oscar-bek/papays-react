@@ -12,9 +12,10 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { sweetTopSuccessAlert } from "../../../lib/sweetAlert";
 
 export function NavbarHome(props: any) {
+
   return (
     <div className="format home_navbar">
       <Container>
@@ -73,7 +74,7 @@ export function NavbarHome(props: any) {
                 //onClick={handleClick}
               >
                 <Badge badgeContent={3} color="secondary">
-                  <img src={"/home/shopping-cart.png"} />
+                  <img src={"/icons/shopping-cart.svg"} />
                 </Badge>
               </IconButton>
             </Box>
@@ -173,3 +174,7 @@ export function NavbarHome(props: any) {
     </div>
   );
 }
+function setAnchorEl(arg0: null) {
+  throw new Error("Function not implemented.");
+}
+

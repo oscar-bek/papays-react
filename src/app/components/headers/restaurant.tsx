@@ -69,7 +69,7 @@ export function NavbarRestaurant(props: any) {
                 //onClick={handleClick}
               >
                 <Badge badgeContent={3} color="secondary">
-                  <img src={"/home/shopping-cart.png"} />
+                  <img src={"/icons/shopping-cart.svg"} />
                 </Badge>
               </IconButton>
             </Box>

@@ -26,18 +26,52 @@ import { Footer } from "./components/footer";
 import AuthenticationModal from "./components/auth";
 
 function App() {
+  /** INITIALIZATIONS **/
+ 
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
+  const [signUpOpen, setSignUpOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+    /** HANDLERS */
+    const handleSignUpOpen = () => setSignUpOpen(true);
+    const handleSignUpClose = () => setSignUpOpen(false);
+    const handleLoginOpen = () => setLoginOpen(true);
+    const handleLoginClose = () => setLoginOpen(false);
 
   return (
     <Router>
       {main_path == "/" ? (
-        <NavbarHome setPath={setPath} />
-      ) : main_path.includes("/restaurant") ? (
-        <NavbarRestaurant setPath={setPath} />
-      ) : (
-        <NavbarOthers setPath={setPath} />
-      )}
+        <NavbarHome
+        setPath={setPath}
+        handleLoginOpen={handleLoginOpen}
+        handleSignUpOpen={handleSignUpOpen}
+        anchorEl={anchorEl}
+        open={open}
+       
+      />
+    ) : main_path.includes("/restaurant") ? (
+      <NavbarRestaurant
+        setPath={setPath}
+        handleLoginOpen={handleLoginOpen}
+        handleSignUpOpen={handleSignUpOpen}
+        anchorEl={anchorEl}
+        open={open}
+       
+      />
+    ) : (
+      <NavbarOthers
+        setPath={setPath}
+        handleLoginOpen={handleLoginOpen}
+        handleSignUpOpen={handleSignUpOpen}
+        anchorEl={anchorEl}
+        open={open}
+      
+      />
+    )}
 
       <Switch>
         <Route path="/restaurant">
@@ -65,8 +99,15 @@ function App() {
 
       <Footer />
 
-      <AuthenticationModal/>
-      
+      <AuthenticationModal
+       loginOpen={loginOpen}
+       handleLoginOpen={handleLoginOpen}
+       handleLoginClose={handleLoginClose}
+       signUpOpen={signUpOpen}
+       handleSignUpOpen={handleSignUpOpen}
+       handleSignUpClose={handleSignUpClose}
+       />
+
     </Router>
   );
 }

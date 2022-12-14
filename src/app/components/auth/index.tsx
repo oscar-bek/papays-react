@@ -123,27 +123,27 @@ export default function AuthenticationModal(props: any) {
             <Stack sx={{ marginLeft: "69px", alignItems: "center" }}>
               <h2>SignUp Form</h2>
               <TextField
-                // onChange={}
+                onChange={handleUsername}
                 sx={{ marginTop: "7px" }}
                 id="outlined-basic"
                 label="username"
                 variant="outlined"
               />
               <TextField
-                // onChange={}
+                onChange={handlePhone}
                 sx={{ my: "17px" }}
                 id="outlined-basic"
                 label="phone number"
                 variant="outlined"
               />
               <TextField
-                // onChange={}
+                onChange={handlePassword}
                 id="outlined-basic"
                 label="password"
                 variant="outlined"
               />
               <Fab
-                // onClick={}
+                onClick={handleSignupRequest}
                 sx={{ marginTop: "30px", width: "120px" }}
                 variant="extended"
                 color="primary"

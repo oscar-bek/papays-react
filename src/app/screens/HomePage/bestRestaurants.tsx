@@ -51,9 +51,7 @@ export function BestRestaurants() {
 											>
 												<Favorite
 													/*@ts-ignore*/
-													style={{
-														color: 'white',
-													}}
+													style={{ fill: ele?.me_liked && ele?.me_liked[0]?.my_favorite ? 'red' : 'white' }}
 												/>
 											</IconButton>
 										</CardOverflow>

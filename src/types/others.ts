@@ -8,7 +8,7 @@ export interface ProductSearchObj {
   page: number;
   limit: number;
   order: string;
-  resturant_mb_id?: string;
+  restaurant_mb_id?: string;
   product_collection?: string;
 }
 

@@ -359,11 +359,11 @@
   line-height: 14px;
   color: #fffcfc;
 }
-
 .restaurant_page .single_restaurant .dish_wrapper {
   margin-left: 20px;
-  width: 1400px;
+  width: 100%;
   height: auto;
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

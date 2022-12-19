@@ -165,10 +165,10 @@ export function OneRestaurant() {
 							slidesPerView={7}
 							centeredSlides={false}
 							spaceBetween={30}
-							navigation={{
-								nextEl: '.restaurant-next',
-								prevEl: '.restaurant-prev',
-							}}
+              navigation={{
+                nextEl: ".restaurant-next",
+                prevEl: ".restaurant-prev",
+              }}
 						>
 							{randomRestaurants.map((ele: Restaurant) => {
 								const image_path = `${serverApi}/${ele.mb_image}`;
@@ -230,7 +230,7 @@ export function OneRestaurant() {
 
 						<Stack className={'dish_wrapper'}>
             {targetProducts.map((product: Product) => {
-              const image_path = `${serverApi}/${product.product_images[0]}`;
+              const image_path = `${serverApi}/${product.product_images[0]}`.replaceAll('\\','/');
               const size_volume =
                 product.product_collection === "drink"
                   ? product.product_volume + "l"
@@ -269,10 +269,8 @@ export function OneRestaurant() {
                       className="view_btn"
                    
                       >
-                      <img
-                        src={"/icons/shopping-cart.svg"}
-                        style={{ display: "flex" }}
-                      />
+                         <img src={"/icons/shopping-cart.svg"}
+                           style={{ display: "flex" }} />
                     </Button>
                     <Button
                       className="like_view_btn"
@@ -342,52 +340,50 @@ export function OneRestaurant() {
 			<Container className="member_reviews">
 				<Box className={'category_title'}>Oshxona haqida</Box>
 				<Stack display={'flex'} flexDirection={'row'} width={'90%'} sx={{ mt: '70px' }}>
-					<Box
-						className={'about_left'}
-						sx={{
-							backgroundImage: `url(${serverApi}/${chosenRestaurant?.mb_image})`,
-						}}
-					>
-						<div className={'about_left_desc'}>
-            <span>{chosenRestaurant?.mb_nick}</span>
+				 <Box
+            className="about_left"
+            sx={{
+              backgroundImage: `url(${serverApi}/${chosenRestaurant?.mb_image})`.replaceAll('\\','/'),
+            }}>
+            <div className="about_left_desc">
+              <span>{chosenRestaurant?.mb_nick}</span>
               <p>{chosenRestaurant?.mb_description}</p>
-						</div>
-					</Box>
-					<Box className={'about_right'}>
-						{Array.from(Array(3).keys()).map((ele, index) => {
-							return (
-								<Box display={'flex'} flexDirection={'row'} key={index}>
-									<div className={'about_right_img'}></div>
-									<div className={'about_right_desc'}>
-										<span>Bizning mohir oshpazlarimiz</span>
-										<p>
-                      Bizning oshpazlarimiz dunyo taniydigan oliygohlarda malaka oshirib kelishgan
+            </div>
+          </Box>
+          <Box className="about_right">
+            {Array.from(Array(3).keys()).map((ele, index) => {
+              return (
+                <Box display="flex" flexDirection={"row"} key={index}>
+                  <div className="about_right_img"></div>
+                  <div className="about_right_desc">
+                    <span>Bizning mohir oshpazlarimiz</span>
+                    <p>
+                      Bizning oshpazlarimiz dunyo taniydigan oliygohlarda malaka
+                      oshirib kelishgan
                     </p>
-									</div>
-								</Box>
-							);
-						})}
-					</Box>
-				</Stack>
+                  </div>
+                </Box>
+              );
+            })}
+          </Box>
+        </Stack>
 
-				<Stack
-					sx={{ mt: '60px' }}
-					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-					}}
-				>
-					<Box className={'category_title'}>Oshxona Manzili</Box>
-					<iframe
-						style={{ marginTop: '60px' }}
-						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.363734762081!2d69.2267250514616!3d41.322703307863044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b9a0a33281d%3A0x9c5015eab678e435!2z0KDQsNC50YXQvtC9!5e0!3m2!1sko!2skr!4v1655461169573!5m2!1sko!2skr"
-						width="1320"
-						height="500"
-						referrerPolicy="no-referrer-when-downgrade"
-					></iframe>
-				</Stack>
-			</Container>
-		</div>
-	);
+        <Stack
+          sx={{ mt: "60px" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}>
+          <Box className="category_title">Oshxona manzili</Box>
+          <iframe
+            style={{ marginTop: "60px" }}
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d808.5723673239509!2d128.75845152922642!3d35.841904985907384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35660c41f3208191%3A0x6721175b4ea598fb!2s479%20Bujeok-ri%2C%20Amnyang-myeon%2C%20Gyeongsan%2C%20Gyeongsangbuk-do%2C%20South%20Korea!5e0!3m2!1sen!2sus!4v1667560907844!5m2!1sen!2sus"
+            width="1320"
+            height={"500"}
+            referrerPolicy="no-referrer-when-downgrade"></iframe>
+        </Stack>
+      </Container>
+    </div>
+  );
 }

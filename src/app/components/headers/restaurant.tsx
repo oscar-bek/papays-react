@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { Logout } from "@mui/icons-material";
+import Basket from "./basket";
 
 export function NavbarRestaurant(props: any) {
   return (
@@ -61,20 +62,7 @@ export function NavbarRestaurant(props: any) {
                 Yordam
               </NavLink>
             </Box>
-            <Box className="hover-line">
-              <IconButton
-                aria-label="cart"
-                id="basic-button"
-                aria-controls={undefined}
-                aria-haspopup="true"
-                aria-expanded={undefined}
-                //onClick={handleClick}
-              >
-                <Badge badgeContent={3} color="secondary">
-                  <img src={"/icons/shopping-cart.svg"} />
-                </Badge>
-              </IconButton>
-            </Box>
+         <Basket/>
             {!props.verifiedMemberData ? (
               <Box>
                 <Button

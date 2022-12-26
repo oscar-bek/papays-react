@@ -23,7 +23,7 @@ export default function Basket(props: any) {
     (a: any, c: CartItem) => a + c.price * c.quantity,
     0
   );
-
+  console.log("itemsPrice:::", itemsPrice);
   const shippingPrice = itemsPrice > 100 ? 0 : 2;
   const totalPrice = itemsPrice + shippingPrice;
 
@@ -100,7 +100,7 @@ export default function Basket(props: any) {
                     <div className={"cancel_btn"}>
                       <CancelIcon
                         color={"primary"}
-                        // onClick={}
+                        onClick={() => onDelete(item)}
                       />
                     </div>
                     <img src={image_path} className={"product_img"} />
@@ -109,7 +109,7 @@ export default function Basket(props: any) {
                     <Box sx={{ minWidth: 100 }}>
                       <div className="col-2">
                         <button
-                          //   onClick={}
+                                onClick={() => onRemove(item)}
                           className="remove"
                         >
                           -

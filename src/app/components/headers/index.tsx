@@ -68,7 +68,14 @@ export function NavbarHome(props: any) {
                 Yordam
               </NavLink>
             </Box>
-           <Basket/>
+           <Basket
+              cartItems={props.cartItems}
+              onAdd={props.onAdd}
+              onRemove={props.onRemove}
+              onDelete={props.onDelete}
+              onDeleteAll={props.onDeleteAll}
+              setOrderRebuild={props.setOrderRebuild}
+           />
             {!props.verifiedMemberData ? (
               <Box>
                 <Button

@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, IconButton, Container, Stack, Badge, Menu, MenuItem, ListItemIcon } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { Logout } from '@mui/icons-material';
-import Basket from "./basket";
+import Basket from './basket';
 
 export function NavbarOthers(props: any) {
 	return (
@@ -21,13 +21,13 @@ export function NavbarOthers(props: any) {
 								Restaurant
 							</NavLink>
 						</Box>
-					  {props.verifiedMemberData ? (
-             <Box className="hover-line" onClick={props.setPath}>
-             <NavLink to="/orders" activeClassName="underline">
-               Buyurtma
-             </NavLink>
-           </Box>
-            ) : null}
+						{props.verifiedMemberData ? (
+							<Box className="hover-line" onClick={props.setPath}>
+								<NavLink to="/orders" activeClassName="underline">
+									Buyurtma
+								</NavLink>
+							</Box>
+						) : null}
 						<Box className="hover-line" onClick={props.setPath}>
 							<NavLink to="/community" activeClassName="underline">
 								Jamiyat
@@ -45,7 +45,14 @@ export function NavbarOthers(props: any) {
 								Yordam
 							</NavLink>
 						</Box>
-						<Basket/>
+						<Basket
+							cartItems={props.cartItems}
+							onAdd={props.onAdd}
+							onRemove={props.onRemove}
+							onDelete={props.onDelete}
+							onDeleteAll={props.onDeleteAll}
+							setOrderRebuild={props.setOrderRebuild}
+						/>
 						{!props.verifiedMemberData ? (
 							<Box>
 								<Button

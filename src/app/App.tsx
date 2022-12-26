@@ -58,8 +58,8 @@ function App() {
     const member_data = memberDataJson ? JSON.parse(memberDataJson) : null;
     if (member_data) {
       member_data.mb_image = member_data.mb_image
-        ? `${serverApi}/${member_data.mb_image}`
-        : "/auth/defaultUser.png";
+        ? `${serverApi}/${member_data.mb_image}`.replaceAll('\\','/')
+        : "/auth/default_user.svg";
       setVerifiedMemberData(member_data);
     }
   }, [signUpOpen, loginOpen]);

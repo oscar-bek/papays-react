@@ -163,6 +163,7 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
          
         />
       ) : main_path.includes("/restaurant") ? (
@@ -181,6 +182,7 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
   
         />
       ) : (
@@ -199,6 +201,7 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
         
         />
       )}
@@ -212,13 +215,15 @@ function App() {
         </Route>
         <Route path="/orders">
           <OrdersPage
-          
-          
-           
-          />
-        </Route>
-        <Route path="/member-page">
-          <MemberPage  />
+           orderRebuild={orderRebuild}
+           setOrderRebuild={setOrderRebuild}
+           verifiedMemberData={verifiedMemberData}
+           />
+         </Route>
+         <Route path="/member-page">
+           <MemberPage  
+          //  verifiedMemberData={verifiedMemberData}
+            />
         </Route>
         <Route path="/help">
           <HelpPage />

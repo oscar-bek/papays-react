@@ -1,9 +1,15 @@
 import React from "react";
 import { Container } from "@mui/material";
-import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { Route, Switch, useLocation, useRouteMatch } from "react-router-dom";
 import { VisitOtherPage } from "./VisitOtherPage";
 import { VisitMyPage } from "./VisitMyPage";
 import "../../../css/my_page.css";
+
+function useQuery() {
+  const { search } = useLocation();
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
 
 export function MemberPage() {
   let member = useRouteMatch();

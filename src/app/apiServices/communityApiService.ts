@@ -35,43 +35,7 @@ class CommunityApiService {
     }
   }
 
-//   public async getMemberCommunityArticles(data: SearchMemberArticlesObj) {
-//     try {
-//       let url = `/community/articles?mb_id=${data.mb_id}&page=${data.page}&limit=${data.limit}`;
 
-//       const result = await axios.get(this.path + url, {
-//         withCredentials: true,
-//       });
-//       assert.ok(result?.data, Definer.general_err1);
-//       assert.ok(result?.data?.state != "fail", result?.data?.message);
-//       console.log("state:::", result.data.state);
-
-//       const articles: BoArticle[] = result.data.data;
-//       return articles;
-//     } catch (error: any) {
-//       console.log("ERROR ::: getMemberCommunityArticles", error.message);
-//       throw error;
-//     }
-//   }
-
-//   public async getChosenArticle(art_id: string) {
-//     try {
-//       let url = `/community/single-article/${art_id}`;
-//       const result = await axios.get(this.path + url, {
-//         withCredentials: true,
-//       });
-
-//       assert.ok(result?.data, Definer.general_err1);
-//       assert.ok(result?.data?.state != "fail", result?.data?.message);
-//       console.log("state:::", result.data.state);
-
-//       const article: BoArticle = result.data.data;
-//       return article;
-//     } catch (error: any) {
-//       console.log("ERROR ::: getChosenArticle", error.message);
-//       throw error;
-//     }
-//   }
 }
 
 export default CommunityApiService;

@@ -112,23 +112,29 @@ export function CommunityPage(props: any) {
                 </Box>
 
                 <Box className={"article_main"}>
-                  <TabPanel value={"1"}>
+                <TabPanel value={"1"}>
                     <TargetArticles
                       targetBoArticles={targetBoArticles}
-                      test={"Maqolalar"}
+                      setArticlesRebuild={setArticlesRebuild}
                     />
                   </TabPanel>
                   <TabPanel value={"2"}>
                     <TargetArticles
                       targetBoArticles={targetBoArticles}
-                      test={"Mashxurlar"}
+                      setArticlesRebuild={setArticlesRebuild}
                     />
                   </TabPanel>
                   <TabPanel value={"3"}>
-                    <TargetArticles targetBoArticles={targetBoArticles} />
+                    <TargetArticles
+                      targetBoArticles={targetBoArticles}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                   </TabPanel>
                   <TabPanel value={"4"}>
-                    <TargetArticles targetBoArticles={targetBoArticles} />
+                    <TargetArticles
+                      targetBoArticles={targetBoArticles}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                   </TabPanel>
                 </Box>
 

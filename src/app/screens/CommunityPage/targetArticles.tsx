@@ -5,12 +5,19 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import Checkbox from "@mui/material/Checkbox";
 import moment from "moment";
+import { BoArticle } from "../../../types/boArticle";
+import { serverApi } from "../../../lib/config";
 
 export function TargetArticles(props: any) {
   return (
     <Stack>
-      {props.targetBoArticles?.map((article: any, index: string) => {
-        const art_image_url = "/community/default_article.svg";
+       {props.targetBoArticles?.map((article: BoArticle) => {
+        const art_image_url = article.art_image
+          ? `${serverApi}/${article.art_image}`
+          : "/home/papay.png";
+        const art_author_image = article.member_data.mb_image
+          ? `${serverApi}/${article.member_data.mb_image}`
+          : "/auth/default_user.svg";
         return (
           <Link
             className={"all_article_box"}
@@ -19,25 +26,26 @@ export function TargetArticles(props: any) {
           >
             <Box
               className={"all_article_img"}
-              sx={{ backgroundImage: `url(${art_image_url})` }}
-            ></Box>
+              sx={{
+                backgroundImage: `url(${art_image_url})`,
+              }}></Box>
             <Box className={"all_article_container"}>
               <Box alignItems={"center"} display={"flex"}>
                 <img
-                  src={"/auth/default_user.svg"}
+                   src={art_author_image}
                   width={"35px"}
                   style={{ borderRadius: "50%", backgroundSize: "cover" }}
                 />
-                <span className={"all_article_author_user"}>martin</span>
+                <span className={"all_article_author_user"}> {article?.member_data.mb_nick}</span>
               </Box>
               <Box
                 display={"flex"}
                 flexDirection={"column"}
                 sx={{ mt: "15px" }}
               >
-                <span className={"all_article_title"}>evaluation</span>
+                <span className={"all_article_title"}>{article?.bo_id}</span>
                 <p className={"all_article_desc"}>
-                  Texas De Brazil zor restaurant!
+                {article?.art_subject}
                 </p>
               </Box>
               <Box>
@@ -60,13 +68,13 @@ export function TargetArticles(props: any) {
                       sx={{ ml: "40px" }}
                       icon={<FavoriteBorder />}
                       checkedIcon={<Favorite style={{ color: "red" }} />}
-                      id={index}
+                      id={article?._id}
                       /*@ts-ignore*/
                       checked={false}
                     />
-                    <span style={{ marginRight: "18px" }}>100</span>
+                    <span style={{ marginRight: "18px" }}>  {article?.art_likes}</span>
                     <RemoveRedEyeIcon />
-                    <span style={{ marginLeft: "18px" }}>1000</span>
+                    <span style={{ marginLeft: "18px" }}>  {article?.art_views}</span>
                   </Box>
                 </Box>
               </Box>

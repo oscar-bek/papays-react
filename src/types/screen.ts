@@ -1,12 +1,14 @@
 import { BoArticle } from "./boArticle";
-import { Product } from "./product";
-import { Restaurant } from "./user";
 import { Order } from "./order";
+import { Product } from "./product";
+import { Member, Restaurant } from "./user";
 
+/** REACT APP STATE */
 export interface AppRootState {
-  ordersPage: any;
   homePage: HomePageState;
   restaurantPage: RestaurantPageState;
+  ordersPage: OrdersPageState;
+  communityPage: CommunityPageState;
 }
 
 /** HOME PAGE */
@@ -33,4 +35,9 @@ export interface OrdersPageState {
   pausedOrders: Order[];
   processOrders: Order[];
   finishedOrders: Order[];
+}
+
+/** COMMUNITY PAGE */
+export interface CommunityPageState {
+  targetBoArticles: BoArticle[];
 }

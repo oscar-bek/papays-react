@@ -3,6 +3,7 @@ import HomePageReducer from './screens/HomePage/slice';
 import reduxLogger from 'redux-logger';
 import RestaurantPageReducer from './screens/RestaurantPage/slice';
 import OrdersPageReducer from './screens/OrdersPage/slice';
+import CommunityPageReducer from './screens/CommunityPage/slice';
 
 export const store = configureStore({
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(reduxLogger),
@@ -10,6 +11,7 @@ export const store = configureStore({
 		homePage: HomePageReducer,
 		restaurantPage: RestaurantPageReducer,
 		ordersPage: OrdersPageReducer,
+		communityPage: CommunityPageReducer,
 	},
 });
 

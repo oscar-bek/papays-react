@@ -11,18 +11,24 @@ function useQuery() {
 }
 
 
-export function MemberPage() {
+export function MemberPage(props: any) {
+  const { verifiedMemberData } = props;
+  const query = useQuery();
   let member = useRouteMatch();
-  console.log(member);
+
+
+  console.log("QUERY mb_id:::", query.get("mb_id"));
 
   return (
     <div className="restaurant_page">
       <Switch>
         <Route path={`${member.path}/other`}>
-          <VisitOtherPage />
+          <VisitOtherPage
+            verifiedMemberData={verifiedMemberData}
+          />
         </Route>
         <Route path={`${member.path}`}>
-          <VisitMyPage />
+          <VisitMyPage verifiedMemberData={verifiedMemberData} />
         </Route>
       </Switch>
     </div>

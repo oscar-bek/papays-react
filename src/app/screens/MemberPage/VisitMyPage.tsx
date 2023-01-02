@@ -21,10 +21,73 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { TuiEditor } from "../../components/tuiEditor/TuiEditor";
 import TViewer from "../../components/tuiEditor/TViewer";
+import { Member } from "../../../types/user";
+import { BoArticle, SearchMemberArticlesObj } from "../../../types/boArticle";
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import {
+  setChosenMember,
+  setChosenMemberBoArticles,
+  setChosenSingleBoArticle,
+} from "./slice";
+import {
+  retrieveChosenMember,
+  retrieveChosenMemberBoArticle,
+  retrieveChosenSingleBoArticle,
+} from "./selector";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider,
+} from "../../../lib/sweetAlert";
+import CommunityApiService from "../../apiServices/communityApiService";
+import MemberApiService from "../../apiServices/memberApiServices";
+import { serverApi } from "../../../lib/config";
+
+/** REDUX SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setChosenMember: (data: Member) => dispatch(setChosenMember(data)),
+  setChosenMemberBoArticles: (data: BoArticle[]) =>
+    dispatch(setChosenMemberBoArticles(data)),
+  setChosenSingleBoArticle: (data: BoArticle) =>
+    dispatch(setChosenSingleBoArticle(data)),
+});
+
+/** REDUX SELECTOR */
+const chosenMemberRetriever = createSelector(
+  retrieveChosenMember,
+  (chosenMember) => ({
+    chosenMember,
+  })
+);
+const chosenMemberBoArticleRetriever = createSelector(
+  retrieveChosenMemberBoArticle,
+  (chosenMemberBoArticles) => ({
+    chosenMemberBoArticles,
+  })
+);
+const chosenSingleBoArticleRetriever = createSelector(
+  retrieveChosenSingleBoArticle,
+  (chosenSingleBoArticle) => ({
+    chosenSingleBoArticle,
+  })
+);
 
 export function VisitMyPage(props: any) {
-  /** INITIALIZATIONS **/
-  const [value, setValue] = useState("5");
+    /** INITIALIZATIONS **/
+    const { verifiedMemberData } = props;
+    const {
+      setChosenMember,
+      setChosenMemberBoArticles,
+      setChosenSingleBoArticle,
+    } = actionDispatch(useDispatch());
+    const { chosenMember } = useSelector(chosenMemberRetriever);
+    const { chosenMemberBoArticles } = useSelector(
+      chosenMemberBoArticleRetriever
+    );
+    const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
+    const [value, setValue] = React.useState("1");
 
   /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {

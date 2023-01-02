@@ -6,6 +6,9 @@ import { Member } from "../../types/user";
 import { MemberLiken } from "../../types/others";
 
 class MemberApiService {
+  getChosenMember(_id: any) {
+    throw new Error("Method not implemented.");
+  }
   memberApiService() {
     throw new Error("Method not implemented.");
   }

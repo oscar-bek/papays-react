@@ -9,6 +9,9 @@ import {
 } from "../../types/boArticle";
 
 class CommunityApiService {
+  getMemberCommunityArticles(memberArticleSearchObj: SearchMemberArticlesObj) {
+    throw new Error("Method not implemented.");
+  }
   private readonly path: string;
 
   constructor() {

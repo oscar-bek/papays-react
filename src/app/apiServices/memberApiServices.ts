@@ -6,12 +6,6 @@ import { Member } from "../../types/user";
 import { MemberLiken } from "../../types/others";
 
 class MemberApiService {
-  getChosenMember(_id: any) {
-    throw new Error("Method not implemented.");
-  }
-  memberApiService() {
-    throw new Error("Method not implemented.");
-  }
   private readonly path: string;
 
   constructor() {
@@ -23,9 +17,10 @@ class MemberApiService {
       const result = await axios.post(this.path + "/login", login_data, {
         withCredentials: true,
       });
-      console.log("state::", result.data.state);
+
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
+      console.log("state:::", result.data.state);
 
       const member: Member = result.data.data;
       localStorage.setItem("member_data", JSON.stringify(member));
@@ -41,9 +36,10 @@ class MemberApiService {
       const result = await axios.post(this.path + "/signup", signup_data, {
         withCredentials: true,
       });
-      console.log("state::", result.data.state);
+
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
+      console.log("state:::", result.data.state);
 
       const member: Member = result.data.data;
       localStorage.setItem("member_data", JSON.stringify(member));
@@ -62,6 +58,7 @@ class MemberApiService {
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
+      console.log("state:::", result.data.state);
 
       const logout_result = result.data.state;
       return logout_result == "success";
@@ -77,14 +74,35 @@ class MemberApiService {
         result = await axios.post(this.path + url, data, {
           withCredentials: true,
         });
+
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
+      console.log("state:::", result.data.state);
 
       console.log("state:", result.data.data);
       const like_result: MemberLiken = result.data.data;
       return like_result;
     } catch (error: any) {
       console.log("ERROR ::: memberLikeTarget", error.message);
+      throw error;
+    }
+  }
+
+  public async getChosenMember(id: string) {
+    try {
+      const url = `/member/${id}`,
+        result = await axios.get(this.path + url, {
+          withCredentials: true,
+        });
+
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      console.log("state:::", result.data.state);
+
+      const member: Member = result.data.data;
+      return member;
+    } catch (error: any) {
+      console.log("ERROR ::: getChosenMember", error.message);
       throw error;
     }
   }

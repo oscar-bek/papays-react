@@ -5,39 +5,83 @@ import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { BoArticle } from "../../../types/boArticle";
+import { serverApi } from "../../../lib/config";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
+import MemberApiService from "../../apiServices/memberApiServices";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 
 export function MemberPosts(props: any) {
+  const {
+    renderChosenArticleHandler,
+    chosenMemberBoArticles,
+    setArticlesRebuild,
+  } = props;
+
+  
+  /** HANDLERS */
+  const targetLikeHandler = async (e: any) => {
+    try {
+      e.stopPropagation();
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const memberService = new MemberApiService();
+      const like_result = await memberService.memberLikeTarget({
+        like_ref_id: e.target.id,
+        group_type: "community",
+      });
+      assert.ok(like_result, Definer.general_err1);
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      props.setArticlesRebuild(new Date());
+    } catch (error: any) {
+      console.log(error);
+      sweetErrorHandling(error).then();
+    }
+  };
+
   return (
     <Box className={"post_content"}>
-      {["1", "2", "3"].map((article) => {
+    {chosenMemberBoArticles.map((article: BoArticle) => {
+        const image_path = article.art_image
+          ? `${serverApi}/${article.art_image}`
+          : "/community/default_article.svg";
         return (
-          <Stack className={"all_article_box"} sx={{ cursor: "pointer" }}>
+          <Stack  
+          className="all_article_box"
+          sx={{ cursor: "pointer" }}
+          onClick={() => renderChosenArticleHandler(article?._id)}>
             <Box
-              className={"all_article_img"}
-              sx={{
-                backgroundImage: `url('/auth/default_user.svg')`,
-              }}
-            ></Box>
+             className="all_article_img"
+             sx={{ backgroundImage: `url(${image_path})` }}>
+             </Box>
             <Box className={"all_article_container"}>
-              <Box alignItems={"center"} display={"flex"}>
+              <Box alignItems={"center"} display={"flex"} sx={{ mt: "5px" }}>
                 <img
-                  src={"/auth/default_user.svg"}
-                  width={"35px"}
-                  style={{ borderRadius: "50%", backgroundSize: "cover" }}
-                />
-                <span className={"all_article_author_user"}>
-                  Martin Robertson
-                </span>
+                  src={ article?.member_data?.mb_image
+                    ? `${serverApi}/${article.member_data.mb_image}`
+                    : "/auth/default_user.svg"
+                }
+                
+                width={"35px"}
+                height={"35px"}
+                style={{ borderRadius: "50%", backgroundSize: "cover" }}
+                
+              />
+              <span className="all_article_author_user">
+                {article?.member_data?.mb_nick}
+              </span>
               </Box>
               <Box
                 display={"flex"}
                 flexDirection={"column"}
                 sx={{ mt: "15px" }}
               >
-                <span className={"all_article_title"}>
-                  Restaurantlarga baho
-                </span>
-                <p className={"all_article_desc"}>Burak ajoyib restaurant</p>
+               <span className="all_article_title">{article?.bo_id}</span>
+               <p className="all_article_desc">{article?.art_subject}</p>
               </Box>
               <Box>
                 <Box
@@ -54,18 +98,27 @@ export function MemberPosts(props: any) {
                       alignItems: "center",
                     }}
                   >
-                    <span>{moment().format("YY-MM-DD HH:mm")}</span>
+                       {moment(article?.createdAt).format("YY-MM-DD HH:mm")}
                     <Checkbox
                       sx={{ ml: "40px" }}
                       icon={<FavoriteBorder />}
                       checkedIcon={<Favorite style={{ color: "red" }} />}
-                      checked={false}
+                      id={article?._id}
+                      onClick={targetLikeHandler}
+                      checked={
+                        article?.me_liked && article.me_liked[0]?.my_favorite
+                          ? true
+                          : false
+                      }
                     />
-
-                    <span style={{ marginRight: "18px" }}>100</span>
-
+                    <span style={{ marginRight: "18px" }}>
+                      {article?.art_likes}
+                    </span>
                     <RemoveRedEyeIcon />
-                    <span style={{ marginLeft: "18px" }}>1000</span>
+                    <span style={{ marginRight: "18px", marginLeft: "12px" }}>
+                      {article?.art_views}
+                    </span>
+                    
                   </Box>
                 </Box>
               </Box>

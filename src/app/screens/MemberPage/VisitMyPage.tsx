@@ -164,14 +164,24 @@ export function VisitMyPage(props: any) {
 								<TabPanel value={'2'}>
 									<Box className={'menu_name'}>Followers</Box>
 									<Box className={'menu_content'}>
-										<MemberFollowers actions_enabled={true} />
+										<MemberFollowers
+                     actions_enabled={true}
+                     setFollowRebuild={setFollowRebuild}
+                     mb_id={props.verifiedMemberData?._id}
+                     followRebuild={followRebuild}
+                    />
 									</Box>
 								</TabPanel>
 
 								<TabPanel value={'3'}>
 									<Box className={'menu_name'}>Following</Box>
 									<Box className={'menu_content'}>
-										<MemberFollowing actions_enabled={true} />
+										<MemberFollowing 
+                      actions_enabled={true}
+                      setFollowRebuild={setFollowRebuild}
+                      mb_id={props.verifiedMemberData?._id}
+                      followRebuild={followRebuild}
+                    />
 									</Box>
 								</TabPanel>
 
@@ -203,15 +213,35 @@ export function VisitMyPage(props: any) {
 								<a onClick={() => setValue('6')} className={'settings_btn'}>
 									<SettingsIcon />
 								</a>
-								<Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
+								<Box 
+                  display={'flex'} 
+                  flexDirection={'column'} 
+                  alignItems={'center'}>
 									<div className={'order_user_img'}>
-										<img src={'/auth/default_user.svg'} className={'order_user_avatar'} />
-										<div className={'order_user_icon_box'}>
-											<img src={'/icons/user_icon.svg'} />
-										</div>
+										 <img
+                      src={
+                        chosenMember?.mb_image
+                          ? `${serverApi}/${chosenMember.mb_image}`
+                          : '/icons/user_icon.svg'}
+									 className="order_user_avatar"
+                    />
+                      <div className="order_user_icon_box">
+                      <img
+                        src={
+                          chosenMember?.mb_type === "RESTAURANT"
+                            ? "/auth/restaurant.svg"
+                            : "/icons/user_icon.svg"
+                        }
+                        alt=""
+                      />
+                    </div>
 									</div>
-									<span className={'order_user_name'}>Ismoilov Akmal</span>
-									<span className={'order_user_prof'}>USER</span>
+									<span className={'order_user_name'}>
+                     {chosenMember?.mb_nick}
+                    </span>
+									<span className={'order_user_prof'}>
+                     {chosenMember?.mb_type}
+                  </span>
 								</Box>
 								<Box className={'user_media_box'}>
 									<FacebookIcon />
@@ -220,10 +250,13 @@ export function VisitMyPage(props: any) {
 									<YouTubeIcon />
 								</Box>
 								<Box className={'user_media_box'}>
-									<p className={'follows'}>Followers: 3</p>
-									<p className={'follows'}>Followings: 2</p>
+									<p className={'follows'}>Followers: {chosenMember?.mb_subscriber_cnt}</p>
+									<p className={'follows'}>Followings: {chosenMember?.mb_follow_cnt}</p>
 								</Box>
-								<p className={'user_desc'}>"qushimcha malumot kiritilmagan"</p>
+								<p className={'user_desc'}>
+                  {chosenMember?.mb_description ??
+                    "Qo'shimcha ma'lumot kiritilmagan"}
+                </p>
 								<Box display={'flex'} justifyContent={'flex-end'} sx={{ mt: '10px' }}>
 									<TabList
 										onChange={handleChange}

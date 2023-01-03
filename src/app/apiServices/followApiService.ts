@@ -2,7 +2,6 @@ import assert from "assert";
 import axios from "axios";
 import { serverApi } from "../../lib/config";
 import { Definer } from "../../lib/Definer";
-
 import { Follower, Following, FollowSearchObj } from "../../types/follow";
 
 class FollowApiService {

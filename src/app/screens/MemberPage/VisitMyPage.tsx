@@ -42,15 +42,24 @@ const actionDispatch = (dispatch: Dispatch) => ({
 });
 
 /** REDUX SELECTOR */
-const chosenMemberRetriever = createSelector(retrieveChosenMember, (chosenMember) => ({
-	chosenMember,
-}));
-const chosenMemberBoArticleRetriever = createSelector(retrieveChosenMemberBoArticle, (chosenMemberBoArticles) => ({
-	chosenMemberBoArticles,
-}));
-const chosenSingleBoArticleRetriever = createSelector(retrieveChosenSingleBoArticle, (chosenSingleBoArticle) => ({
-	chosenSingleBoArticle,
-}));
+const chosenMemberRetriever = createSelector(
+  retrieveChosenMember,
+  (chosenMember) => ({
+    chosenMember,
+  })
+);
+const chosenMemberBoArticleRetriever = createSelector(
+  retrieveChosenMemberBoArticle,
+  (chosenMemberBoArticles) => ({
+    chosenMemberBoArticles,
+  })
+);
+const chosenSingleBoArticleRetriever = createSelector(
+  retrieveChosenSingleBoArticle,
+  (chosenSingleBoArticle) => ({
+    chosenSingleBoArticle,
+  })
+);
 
 export function VisitMyPage(props: any) {
 	/** INITIALIZATIONS **/
@@ -65,7 +74,7 @@ export function VisitMyPage(props: any) {
 	const [memberArticleSearchObj, setMemberArticleSearchObj] = useState<SearchMemberArticlesObj>({
 		mb_id: 'none',
 		page: 1,
-		limit: 5,
+		limit: 3,
 	});
 
 	useEffect(() => {
@@ -176,7 +185,7 @@ export function VisitMyPage(props: any) {
 								<TabPanel value={'5'}>
 									<Box className={'menu_name'}>Tanlangan Maqola</Box>
 									<Box className={'menu_content'}>
-										<TViewer text={`<h3>Hello</h3>`} />
+										<TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
 									</Box>
 								</TabPanel>
 

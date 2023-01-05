@@ -21,6 +21,7 @@ import {
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
 import { serverApi } from "../../../lib/config";
+import { useHistory } from "react-router-dom";
 
 
 /** REDUX SLICE */
@@ -89,7 +90,14 @@ export function MemberFollowing(props: any) {
           : "/auth/default_user.svg";
         return (
           <Box className={"follow_box"}>
-            <Avatar alt={""} src={image_url} sx={{ width: 89, height: 89 }} />
+            <Avatar 
+            alt={""} 
+            style={{ cursor: 'pointer' }}
+            src={image_url} 
+            sx={{
+               width: 89, 
+               height: 89 }}
+            					onClick={() => visitMemberHandler(following?.subscriber_id)} />
             <div
               style={{
                 width: "400px",
@@ -102,7 +110,10 @@ export function MemberFollowing(props: any) {
               <span className={"username_text"}>
               {following?.follow_member_data?.mb_type}
               </span>
-              <span className={"name_text"}>
+              <span 
+                   style={{ cursor: "pointer" }}
+                   className={"name_text"}
+                   onClick={() => visitMemberHandler(following?.subscriber_id)}>
               {following?.follow_member_data?.mb_nick}
               </span>
             </div>

@@ -42,24 +42,15 @@ const actionDispatch = (dispatch: Dispatch) => ({
 });
 
 /** REDUX SELECTOR */
-const chosenMemberRetriever = createSelector(
-  retrieveChosenMember,
-  (chosenMember) => ({
-    chosenMember,
-  })
-);
-const chosenMemberBoArticleRetriever = createSelector(
-  retrieveChosenMemberBoArticle,
-  (chosenMemberBoArticles) => ({
-    chosenMemberBoArticles,
-  })
-);
-const chosenSingleBoArticleRetriever = createSelector(
-  retrieveChosenSingleBoArticle,
-  (chosenSingleBoArticle) => ({
-    chosenSingleBoArticle,
-  })
-);
+const chosenMemberRetriever = createSelector(retrieveChosenMember, (chosenMember) => ({
+	chosenMember,
+}));
+const chosenMemberBoArticleRetriever = createSelector(retrieveChosenMemberBoArticle, (chosenMemberBoArticles) => ({
+	chosenMemberBoArticles,
+}));
+const chosenSingleBoArticleRetriever = createSelector(retrieveChosenSingleBoArticle, (chosenSingleBoArticle) => ({
+	chosenSingleBoArticle,
+}));
 
 export function VisitMyPage(props: any) {
 	/** INITIALIZATIONS **/
@@ -74,7 +65,7 @@ export function VisitMyPage(props: any) {
 	const [memberArticleSearchObj, setMemberArticleSearchObj] = useState<SearchMemberArticlesObj>({
 		mb_id: 'none',
 		page: 1,
-		limit: 3,
+		limit: 5,
 	});
 
 	useEffect(() => {
@@ -99,26 +90,26 @@ export function VisitMyPage(props: any) {
 		setValue(newValue);
 	};
 
-  const handlePaginationChange = (event: any, value: number) => {
-    memberArticleSearchObj.page = value;
-    setMemberArticleSearchObj({ ...memberArticleSearchObj });
-  };
+	const handlePaginationChange = (event: any, value: number) => {
+		memberArticleSearchObj.page = value;
+		setMemberArticleSearchObj({ ...memberArticleSearchObj });
+	};
 
-  const renderChosenArticleHandler = async (art_id: string) => {
-    try {
-      const communityService = new CommunityApiService();
-      communityService
-        .getChosenArticle(art_id)
-        .then((data) => {
-          setChosenSingleBoArticle(data);
-          setValue("5");
-        })
-        .catch((err) => console.log(err));
-    } catch (error: any) {
-      console.log(error);
-      sweetErrorHandling(error).then();
-    }
-  };
+	const renderChosenArticleHandler = async (art_id: string) => {
+		try {
+			const communityService = new CommunityApiService();
+			communityService
+				.getChosenArticle(art_id)
+				.then((data) => {
+					setChosenSingleBoArticle(data);
+					setValue('5');
+				})
+				.catch((err) => console.log(err));
+		} catch (error: any) {
+			console.log(error);
+			sweetErrorHandling(error).then();
+		}
+	};
 
 	return (
 		<div className={'my_page'}>
@@ -131,20 +122,16 @@ export function VisitMyPage(props: any) {
 									<Box className={'menu_name'}>Mening Maqolalarim</Box>
 									<Box className={'menu_content'}>
 										<MemberPosts
-                     chosenMemberBoArticles={chosenMemberBoArticles}
-                     renderChosenArticleHandler={renderChosenArticleHandler}
-                     setArticlesRebuild={setArticlesRebuild}
-                      />
+											chosenMemberBoArticles={chosenMemberBoArticles}
+											renderChosenArticleHandler={renderChosenArticleHandler}
+											setArticlesRebuild={setArticlesRebuild}
+										/>
 										<Stack sx={{ my: '40px' }} direction="row" alignItems="center" justifyContent="center">
 											<Box className={'bottom_box'}>
 												<Pagination
-													 count={
-                            memberArticleSearchObj.page >= 3
-                              ? memberArticleSearchObj.page + 1
-                              : 3
-                          }
-                          page={memberArticleSearchObj.page}
-                          renderItem={(item) => (
+													count={memberArticleSearchObj.page >= 3 ? memberArticleSearchObj.page + 1 : 3}
+													page={memberArticleSearchObj.page}
+													renderItem={(item) => (
 														<PaginationItem
 															components={{
 																previous: ArrowBackIcon,
@@ -154,7 +141,7 @@ export function VisitMyPage(props: any) {
 															color={'secondary'}
 														/>
 													)}
-                          onChange={handlePaginationChange}
+													onChange={handlePaginationChange}
 												/>
 											</Box>
 										</Stack>
@@ -165,23 +152,23 @@ export function VisitMyPage(props: any) {
 									<Box className={'menu_name'}>Followers</Box>
 									<Box className={'menu_content'}>
 										<MemberFollowers
-                     actions_enabled={true}
-                     setFollowRebuild={setFollowRebuild}
-                     mb_id={props.verifiedMemberData?._id}
-                     followRebuild={followRebuild}
-                    />
+											actions_enabled={true}
+											setFollowRebuild={setFollowRebuild}
+											mb_id={props.verifiedMemberData?._id}
+											followRebuild={followRebuild}
+										/>
 									</Box>
 								</TabPanel>
 
 								<TabPanel value={'3'}>
 									<Box className={'menu_name'}>Following</Box>
 									<Box className={'menu_content'}>
-										<MemberFollowing 
-                      actions_enabled={true}
-                      setFollowRebuild={setFollowRebuild}
-                      mb_id={props.verifiedMemberData?._id}
-                      followRebuild={followRebuild}
-                    />
+										<MemberFollowing
+											actions_enabled={true}
+											setFollowRebuild={setFollowRebuild}
+											mb_id={props.verifiedMemberData?._id}
+											followRebuild={followRebuild}
+										/>
 									</Box>
 								</TabPanel>
 
@@ -213,35 +200,21 @@ export function VisitMyPage(props: any) {
 								<a onClick={() => setValue('6')} className={'settings_btn'}>
 									<SettingsIcon />
 								</a>
-								<Box 
-                  display={'flex'} 
-                  flexDirection={'column'} 
-                  alignItems={'center'}>
+								<Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
 									<div className={'order_user_img'}>
-										 <img
-                      src={
-                        chosenMember?.mb_image
-                          ? `${serverApi}/${chosenMember.mb_image}`
-                          : '/icons/user_icon.svg'}
-									 className="order_user_avatar"
-                    />
-                      <div className="order_user_icon_box">
-                      <img
-                        src={
-                          chosenMember?.mb_type === "RESTAURANT"
-                            ? "/auth/restaurant.svg"
-                            : "/icons/user_icon.svg"
-                        }
-                        alt=""
-                      />
-                    </div>
+										<img
+											src={chosenMember?.mb_image ? `${serverApi}/${chosenMember.mb_image}` : '/icons/user_icon.svg'}
+											className="order_user_avatar"
+										/>
+										<div className="order_user_icon_box">
+											<img
+												src={chosenMember?.mb_type === 'RESTAURANT' ? '/auth/restaurant.svg' : '/icons/user_icon.svg'}
+												alt=""
+											/>
+										</div>
 									</div>
-									<span className={'order_user_name'}>
-                     {chosenMember?.mb_nick}
-                    </span>
-									<span className={'order_user_prof'}>
-                     {chosenMember?.mb_type}
-                  </span>
+									<span className={'order_user_name'}>{chosenMember?.mb_nick}</span>
+									<span className={'order_user_prof'}>{chosenMember?.mb_type}</span>
 								</Box>
 								<Box className={'user_media_box'}>
 									<FacebookIcon />
@@ -253,15 +226,9 @@ export function VisitMyPage(props: any) {
 									<p className={'follows'}>Followers: {chosenMember?.mb_subscriber_cnt}</p>
 									<p className={'follows'}>Followings: {chosenMember?.mb_follow_cnt}</p>
 								</Box>
-								<p className={'user_desc'}>
-                  {chosenMember?.mb_description ??
-                    "Qo'shimcha ma'lumot kiritilmagan"}
-                </p>
+								<p className={'user_desc'}>{chosenMember?.mb_description ?? "Qo'shimcha ma'lumot kiritilmagan"}</p>
 								<Box display={'flex'} justifyContent={'flex-end'} sx={{ mt: '10px' }}>
-									<TabList
-										onChange={handleChange}
-										aria-label="lab API tabs example"
-									>
+									<TabList onChange={handleChange} aria-label="lab API tabs example">
 										<Tab
 											style={{ flexDirection: 'column' }}
 											value={'4'}
@@ -277,14 +244,18 @@ export function VisitMyPage(props: any) {
 
 							<Box className={'my_page_menu'}>
 								<TabList
+									orientation="vertical"
+									variant="scrollable"
+									value={value}
 									onChange={handleChange}
-									aria-label="lab API tabs example"
+									aria-label="Vertical tabs example"
+									sx={{ borderRight: 1, borderColor: 'divider', width: "350px" }}
 								>
 									<Tab
 										style={{ flexDirection: 'column' }}
 										value={'1'}
 										component={() => (
-											<div className={`menu_box ${value} `} onClick={() => setValue('1')}>
+											<div className={`menu_box `} onClick={() => setValue('1')}>
 												<img src={'/icons/post.svg'} />
 												<span>Maqolalarim</span>
 											</div>
@@ -294,7 +265,7 @@ export function VisitMyPage(props: any) {
 										style={{ flexDirection: 'column' }}
 										value={'2'}
 										component={() => (
-											<div className={`menu_box ${value} `} onClick={() => setValue('2')}>
+											<div className={`menu_box  `} onClick={() => setValue('2')}>
 												<img src={'/icons/followers.svg'} />
 												<span>Follower</span>
 											</div>
@@ -304,7 +275,7 @@ export function VisitMyPage(props: any) {
 										style={{ flexDirection: 'column' }}
 										value={'3'}
 										component={() => (
-											<div className={`menu_box ${value} `} onClick={() => setValue('3')}>
+											<div className={`menu_box `} onClick={() => setValue('3')}>
 												<img src={'/icons/following.svg'} />
 												<span>Following</span>
 											</div>

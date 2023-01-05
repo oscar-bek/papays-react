@@ -65,7 +65,7 @@ export function VisitMyPage(props: any) {
 	const [memberArticleSearchObj, setMemberArticleSearchObj] = useState<SearchMemberArticlesObj>({
 		mb_id: 'none',
 		page: 1,
-		limit: 5,
+		limit: 4,
 	});
 
 	useEffect(() => {
@@ -110,6 +110,8 @@ export function VisitMyPage(props: any) {
 			sweetErrorHandling(error).then();
 		}
 	};
+
+	
 
 	return (
 		<div className={'my_page'}>
@@ -175,7 +177,7 @@ export function VisitMyPage(props: any) {
 								<TabPanel value={'4'}>
 									<Box className={'menu_name'}>Maqola yozish</Box>
 									<Box className={'write_content'}>
-										<TuiEditor />
+										<TuiEditor setValue={setValue} setArticlesRebuild={setArticlesRebuild} />
 									</Box>
 								</TabPanel>
 

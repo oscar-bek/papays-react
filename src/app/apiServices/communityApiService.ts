@@ -1,9 +1,11 @@
+import { applyMiddleware } from "@reduxjs/toolkit";
 import assert from "assert";
 import axios from "axios";
 import { serverApi } from "../../lib/config";
 import { Definer } from "../../lib/Definer";
 import {
   BoArticle,
+  BoArticleInput,
   SearchArticlesObj,
   SearchMemberArticlesObj,
 } from "../../types/boArticle";
@@ -15,6 +17,22 @@ class CommunityApiService {
     this.path = serverApi;
   }
 
+  public async createArticles(data: BoArticleInput) {
+    try {
+      const result = await axios.post(this.path + "/community/create", data,{
+        withCredentials: true,
+      });
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      console.log("state:::", result.data.state);
+
+      const articles: BoArticle[] = result.data.data;
+      return articles;
+    } catch (error: any) {
+      console.log(`ERROR ::: createArticles, ${error.message}`);
+      throw error;
+    }
+  }
   public async getTargetArticles(data: SearchArticlesObj) {
     try {
       let url = `/community/target?bo_id=${data.bo_id}&page=${data.page}&limit=${data.limit}`;
@@ -30,7 +48,7 @@ class CommunityApiService {
       const articles: BoArticle[] = result.data.data;
       return articles;
     } catch (error: any) {
-      console.log("ERROR ::: getTargetArticles", error.message);
+      console.log(`ERROR ::: getTargetArticles, ${error.message}`);
       throw error;
     }
   }
@@ -69,6 +87,32 @@ class CommunityApiService {
       return article;
     } catch (error: any) {
       console.log("ERROR ::: getChosenArticle", error.message);
+      throw error;
+    }
+  }
+
+  public async uploadImageToServer(image: any) {
+    try {
+      let formData = new FormData();
+      formData.append('community_image', image);
+      console.log(image);
+
+      const result = await axios(`${this.path}/community/image`, {
+        method: "POST",
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        }
+      });
+
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      console.log("state:::", result.data.state);
+
+      const iamge_name: string = result.data.data;
+      return iamge_name;
+    } catch (error: any) {
+      console.log("ERROR ::: uploadImageToServer", error.message);
       throw error;
     }
   }

@@ -92,12 +92,13 @@ export function MemberFollowing(props: any) {
           <Box className={"follow_box"}>
             <Avatar 
             alt={""} 
-            style={{ cursor: 'pointer' }}
+          
             src={image_url} 
             sx={{
                width: 89, 
                height: 89 }}
-            					onClick={() => visitMemberHandler(following?.subscriber_id)} />
+            					
+                       />
             <div
               style={{
                 width: "400px",
@@ -111,9 +112,10 @@ export function MemberFollowing(props: any) {
               {following?.follow_member_data?.mb_type}
               </span>
               <span 
-                   style={{ cursor: "pointer" }}
+                
                    className={"name_text"}
-                   onClick={() => visitMemberHandler(following?.subscriber_id)}>
+                 
+                  >
               {following?.follow_member_data?.mb_nick}
               </span>
             </div>

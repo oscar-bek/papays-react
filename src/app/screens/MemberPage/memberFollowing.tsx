@@ -39,6 +39,7 @@ const memberFollowingsRetriever = createSelector(
 
 export function MemberFollowing(props: any) {
   //** INITIALIZATIONS **/
+  const history = useHistory();
   const { setFollowRebuild, mb_id, followRebuild } = props;
   const { setMemberFollowings } = actionDispatch(useDispatch());
   const { memberFollowings } = useSelector(memberFollowingsRetriever);
@@ -74,6 +75,12 @@ export function MemberFollowing(props: any) {
     followingsSearchObj.page = value;
     setFollowingsSearchObj({ ...followingsSearchObj });
   };
+
+  const visitMemberHandler = (mb_id: string) => {
+		history.push(`/member-page/other?mb_id=${mb_id}`);
+    document.location.reload();
+	};
+
   return (
     <Stack>
       {memberFollowings.map((following: Following) => {

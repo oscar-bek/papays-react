@@ -22,6 +22,7 @@ import { sweetErrorHandling, sweetTopSmallSuccessAlert } from '../../../lib/swee
 import assert from 'assert';
 import { Definer } from '../../../lib/Definer';
 import { useHistory } from 'react-router-dom';
+import { verifiedMemberData } from '../../apiServices/verify';
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -53,7 +54,7 @@ export function MemberFollowers(props: any) {
 	const subscribeHandler = async (e: any, id: string) => {
 		try {
 			e.stopPropagation();
-			assert.ok(localStorage.getItem('member_data'), Definer.auth_err1);
+			assert.ok(verifiedMemberData, Definer.auth_err1);
 
 			const followService = new FollowApiService();
 			await followService.subscribe(id);
@@ -73,9 +74,9 @@ export function MemberFollowers(props: any) {
 
 	const visitMemberHandler = (mb_id: string) => {
 		history.push(`/member-page/other?mb_id=${mb_id}`);
-    document.location.reload();
+		document.location.reload();
 	};
-	
+
 	return (
 		<Stack>
 			{memberFollowers.map((follower: Follower) => {
@@ -100,18 +101,14 @@ export function MemberFollowers(props: any) {
 								height: '85%',
 							}}
 						>
+							<span className={'username_text'}>{follower?.subscriber_member_data?.mb_type}</span>
 							<span
-              
-                 className={'username_text'} >
-                
-								{follower?.subscriber_member_data?.mb_type}
+								style={{ cursor: 'pointer' }}
+								className={'name_text'}
+								onClick={() => visitMemberHandler(follower?.subscriber_id)}
+							>
+								{follower?.subscriber_member_data?.mb_nick}
 							</span>
-							<span 
-               style={{ cursor: "pointer" }}
-               className={'name_text'}
-                  onClick={() => visitMemberHandler(follower?.subscriber_id)}>
-                {follower?.subscriber_member_data?.mb_nick}
-                </span>
 						</div>
 						{props.actions_enabled &&
 							(follower?.me_followed && follower.me_followed[0]?.my_following ? (

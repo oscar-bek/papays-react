@@ -16,6 +16,7 @@ import {
   sweetFailureProvider,
 } from "../../../lib/sweetAlert";
 import OrderApiService from "../../apiServices/orderApiService";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 /** REDUX SELECTOR */
 const processOrdersRetriever = createSelector(
@@ -35,7 +36,7 @@ export default function ProcessOrders(props: any) {
       const order_id = event.target.value;
       const data = { order_id: order_id, order_status: "DELETED" };
 
-      if (!localStorage.getItem("member_data")) {
+      if (verifiedMemberData) {
         sweetFailureProvider("Please login first", true);
       }
 
@@ -85,16 +86,16 @@ export default function ProcessOrders(props: any) {
 
               <Box className={"total_price_box blue_solid"}>
                 <Box className={"boxTotal"}>
-                  <p>mahsulot narxi</p>
+                  <p>Mahsulot narxi</p>
                   <p>${order.order_total_amount - order.order_delivery_cost}</p>
                   <img src={"/icons/plus.svg"} style={{ marginLeft: "20px" }} />
-                  <p>yetkazish xizmati</p>
+                  <p>Yetkazish xizmati</p>
                   <p>${order.order_delivery_cost}</p>
                   <img
                     src={"/icons/pause.svg"}
                     style={{ marginLeft: "20px" }}
                   />
-                  <p>jami narx</p>
+                  <p>Jami narx</p>
                   <p>${order.order_total_amount}</p>
                 </Box>
                 <p>{moment(order.createdAt).format("YY/MM/DD hh:mm")}</p>

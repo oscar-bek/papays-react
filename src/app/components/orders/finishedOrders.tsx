@@ -33,7 +33,7 @@ export default function FinishedOrders(props: any) {
 									return (
 										<Box className={'ordersName_price'}>
 											<img src={image_path} className={'orderDishImg'} />
-											<p className={'titleDish'}>Qovurma</p>
+											<p className={'titleDish'}>{product.product_name}</p>
 											<Box className={'priceBox'}>
 												<p> ${item.item_price}</p>
 												<img src={'/icons/Close.svg'} />
@@ -50,10 +50,10 @@ export default function FinishedOrders(props: any) {
 
 							<Box className={'total_price_box red_solid'}>
 								<Box className={'boxTotal'}>
-									<p>mahsulot narxi</p>
+									<p>Mahsulot narxi</p>
                   <p>${order.order_total_amount - order.order_delivery_cost}</p>
 									<img src={'/icons/plus.svg'} style={{ marginLeft: '20px' }} />
-									<p>yetkazish xizmati</p>
+									<p>Yetkazish xizmati</p>
                   <p>${order.order_delivery_cost}</p>
 									<img src={'/icons/pause.svg'} style={{ marginLeft: '20px' }} />
 									<p>jami narx</p>

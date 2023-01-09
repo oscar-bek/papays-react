@@ -33,6 +33,7 @@ import { sweetErrorHandling, sweetFailureProvider } from '../../../lib/sweetAler
 import CommunityApiService from '../../apiServices/communityApiService';
 import MemberApiService from '../../apiServices/memberApiServices';
 import { serverApi } from '../../../lib/config';
+import { verifiedMemberData } from '../../apiServices/verify';
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -54,7 +55,6 @@ const chosenSingleBoArticleRetriever = createSelector(retrieveChosenSingleBoArti
 
 export function VisitMyPage(props: any) {
 	/** INITIALIZATIONS **/
-	const { verifiedMemberData } = props;
 	const { setChosenMember, setChosenMemberBoArticles, setChosenSingleBoArticle } = actionDispatch(useDispatch());
 	const { chosenMember } = useSelector(chosenMemberRetriever);
 	const { chosenMemberBoArticles } = useSelector(chosenMemberBoArticleRetriever);
@@ -69,7 +69,7 @@ export function VisitMyPage(props: any) {
 	});
 
 	useEffect(() => {
-		if (!localStorage.getItem('member_data')) {
+		if (!verifiedMemberData) {
 			sweetFailureProvider('Please login first', true, true);
 		}
 
@@ -156,7 +156,7 @@ export function VisitMyPage(props: any) {
 										<MemberFollowers
 											actions_enabled={true}
 											setFollowRebuild={setFollowRebuild}
-											mb_id={props.verifiedMemberData?._id}
+											mb_id={verifiedMemberData?._id}
 											followRebuild={followRebuild}
 										/>
 									</Box>
@@ -168,7 +168,7 @@ export function VisitMyPage(props: any) {
 										<MemberFollowing
 											actions_enabled={true}
 											setFollowRebuild={setFollowRebuild}
-											mb_id={props.verifiedMemberData?._id}
+											mb_id={verifiedMemberData?._id}
 											followRebuild={followRebuild}
 										/>
 									</Box>

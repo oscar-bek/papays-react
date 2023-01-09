@@ -23,6 +23,7 @@ import { setFinishedOrders, setPausedOrders, setProcessOrders } from './slice';
 import { Order } from '../../../types/order';
 import OrderApiService from '../../apiServices/orderApiService';
 import { Member } from '../../../types/user';
+import { verifiedMemberData } from '../../apiServices/verify';
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -35,7 +36,7 @@ export function OrdersPage(props: any) {
 	// INITIALIZATIONS
 	const [value, setValue] = useState('1');
 	const { setPausedOrders, setProcessOrders, setFinishedOrders } = actionDispatch(useDispatch());
-	const verifiedMemberData: Member | null = props.verifiedMemberData;
+
 
 	useEffect(() => {
 		const orderService = new OrderApiService();

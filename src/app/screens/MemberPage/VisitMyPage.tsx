@@ -111,8 +111,6 @@ export function VisitMyPage(props: any) {
 		}
 	};
 
-	
-
 	return (
 		<div className={'my_page'}>
 			<Container maxWidth="lg" sx={{ mt: '50px', mb: '50px' }}>
@@ -251,7 +249,7 @@ export function VisitMyPage(props: any) {
 									value={value}
 									onChange={handleChange}
 									aria-label="Vertical tabs example"
-									sx={{ borderRight: 1, borderColor: 'divider', width: "350px" }}
+									sx={{ borderRight: 1, borderColor: 'divider', width: '350px' }}
 								>
 									<Tab
 										style={{ flexDirection: 'column' }}

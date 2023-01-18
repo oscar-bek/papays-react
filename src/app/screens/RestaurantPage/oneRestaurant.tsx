@@ -171,17 +171,17 @@ export function OneRestaurant(props: any) {
                 prevEl: ".restaurant-prev",
               }}
 						>
-							{randomRestaurants.map((ele: Restaurant) => {
-								const image_path = `${serverApi}/${ele.mb_image}`;
+							{randomRestaurants?.map((ele: Restaurant) => {
+								const image_path = `${serverApi}/${ele?.mb_image}`;
 								return (
 									<SwiperSlide
 										onClick={() => chosenRestaurantHandler(ele._id)}
 										style={{ cursor: 'pointer' }}
-										key={ele._id}
+										key={ele?._id}
 										className="restaurant_avatars"
 									>
 										<img src={image_path} />
-										<span>{ele.mb_nick}</span>
+										<span>{ele?.mb_nick}</span>
 									</SwiperSlide>
 								);
 							})}
@@ -230,16 +230,16 @@ export function OneRestaurant(props: any) {
 						</Stack>
 
 						<Stack className={'dish_wrapper'}>
-            {targetProducts.map((product: Product) => {
-              const image_path = `${serverApi}/${product.product_images[0]}`.replaceAll('\\','/');
+            {targetProducts?.map((product: Product) => {
+              const image_path = `${serverApi}/${product?.product_images[0]}`.replaceAll('\\','/');
               const size_volume =
-                product.product_collection === "drink"
-                  ? product.product_volume + "l"
-                  : product.product_size + " size";
+                product?.product_collection === "drink"
+                  ? product?.product_volume + "l"
+                  : product?.product_size + " size";
 								return (
 									<Box   className={"dish_box"}
-                  key={product._id}
-                  onClick={() => chosenDishHandler(product._id)}>
+                  key={product?._id}
+                  onClick={() => chosenDishHandler(product?._id)}>
 										<Box
 											className={'dish_img'}
 											sx={{
@@ -250,7 +250,7 @@ export function OneRestaurant(props: any) {
 											<Button className={'like_view_btn'} style={{ left: '36px' }}>
 												<Badge    
                         onClick={(e) => e.stopPropagation()}
-                        badgeContent={product.product_likes}
+                        badgeContent={product?.product_likes}
                         color="primary">
 													<Checkbox
 														icon={<FavoriteBorder style={{ color: 'white' }} />}
@@ -279,7 +279,7 @@ export function OneRestaurant(props: any) {
                       className="like_view_btn"
                       style={{ display: "flex" }}>
                       <Badge
-                        badgeContent={product.product_views}
+                        badgeContent={product?.product_views}
                         color="primary">
                         <Checkbox
                           icon={<RemoveRedEyeIcon style={{ color: "white" }} />}
@@ -288,10 +288,10 @@ export function OneRestaurant(props: any) {
                     </Button>
 										</Box>
 										<Box className={'dish_desc'}>
-											<span className={'dish_title_text'}> {product.product_name}</span>
+											<span className={'dish_title_text'}> {product?.product_name}</span>
 											<div className={'dish_desc_text'}>
 												<MonetizationOnIcon />
-                         {product.product_price}
+                         {product?.product_price}
 											</div>
 										</Box>
 									</Box>

@@ -31,6 +31,7 @@ export function BestDishes() {
   const history = useHistory();
   const { setTrendProducts } = actionDispatch(useDispatch());
   const { trendProducts } = useSelector(trendProductsRetriever);
+  
   useEffect(() => {
     const productServise = new ProductApiService();
     productServise
@@ -50,12 +51,12 @@ export function BestDishes() {
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className="category_title">Trenddagi Ovqatlar</Box>
           <Stack sx={{ mt: "43px" }} flexDirection={"row"}>
-            {trendProducts.map((product: Product) => {
-              const image_path = `${serverApi}/${product.product_images[0]}`.replaceAll('\\','/');
+            {trendProducts?.map((product: Product) => {
+              const image_path = `${serverApi}/${product?.product_images[0]}`.replaceAll('\\','/');
               const size_volume =
-                product.product_collection === "drink"
-                  ? product.product_volume + " l"
-                  : product.product_size + " size";
+                product?.product_collection === "drink"
+                  ? product?.product_volume + " l"
+                  : product?.product_size + " size";
               return (
                 <Box className="dish_box">
                   <Stack
@@ -66,7 +67,7 @@ export function BestDishes() {
                     <div className={"dish_sale"}>{size_volume}</div>
                     <div
                       className={"view_btn"}
-                      onClick={() => chosenDishHandler(product._id)}>
+                      onClick={() => chosenDishHandler(product?._id)}>
                       Batafsil ko'rish
                       <img
                         src="/icons/arrow-right.svg"
@@ -77,11 +78,11 @@ export function BestDishes() {
                   </Stack>
                   <Stack className={"dish_desc"}>
                     <span className={"dish_title_text"}>
-                      {product.product_name}
+                      {product?.product_name}
                     </span>
                     <span className={"dish_desc_text"}>
                       <MonetizationOn />
-                      {product.product_price}
+                      {product?.product_price}
                     </span>
                   </Stack>
                 </Box>

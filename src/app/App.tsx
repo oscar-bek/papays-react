@@ -1,40 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/App.css";
 import "../css/navbar.css";
 import "../css/footer.css";
-
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { RippleBadge } from "./MaterialTheme/styled";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+
 import { RestaurantPage } from "./screens/RestaurantPage";
 import { CommunityPage } from "./screens/CommunityPage";
-import { MemberPage } from "./screens/MemberPage";
 import { OrdersPage } from "./screens/OrdersPage";
+import { MemberPage } from "./screens/MemberPage";
 import { HelpPage } from "./screens/HelpPage";
 import { LoginPage } from "./screens/LoginPage";
-
 import { HomePage } from "./screens/HomePage";
-
 import { NavbarHome } from "./components/headers";
 import { NavbarRestaurant } from "./components/headers/restaurant";
 import { NavbarOthers } from "./components/headers/others";
 import { Footer } from "./components/footer";
-import Car from "./screens/testCar";
 import AuthenticationModal from "./components/auth";
 import { Member } from "../types/user";
 import { serverApi } from "../lib/config";
-import MemberApiService from "./apiServices/memberApiServices";
 import {
   sweetFailureProvider,
   sweetTopSmallSuccessAlert,
 } from "../lib/sweetAlert";
 import { Definer } from "../lib/Definer";
+import assert from "assert";
+import MemberApiService from "./apiServices/memberApiServices";
 import "../app/apiServices/verify";
 import { CartItem } from "../types/others";
 import { Product } from "../types/product";
 
 function App() {
-  /** INITIALIZATIONS **/
-
+  /** INITIALIZATION **/
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
   const [signUpOpen, setSignUpOpen] = useState(false);
@@ -48,8 +46,7 @@ function App() {
   const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
 
-
-  /** HANDLERS */
+  /** HANDLERS **/
   const handleSignUpOpen = () => setSignUpOpen(true);
   const handleSignUpClose = () => setSignUpOpen(false);
   const handleLoginOpen = () => setLoginOpen(true);
@@ -61,14 +58,13 @@ function App() {
   const handleCloseLogOut = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(null);
   };
-
-  const handlerLogoutRequest = async () => {
+  const handleLogOutRequest = async () => {
     try {
-      const memberApiService = new MemberApiService();
-      await memberApiService.logOutRequest();
+      const memberServiceApi = new MemberApiService();
+      await memberServiceApi.logOutRequest();
       await sweetTopSmallSuccessAlert("success", 700, true);
-    } catch (error: any) {
-      console.log(error);
+    } catch (err: any) {
+      console.log(err);
       sweetFailureProvider(Definer.general_err1);
     }
   };
@@ -141,14 +137,13 @@ function App() {
           open={open}
           handleLogOutClick={handleLogOutClick}
           handleCloseLogOut={handleCloseLogOut}
-          handlerLogoutRequest={handlerLogoutRequest}
+          handleLogOutRequest={handleLogOutRequest}
           cartItems={cartItems}
           onAdd={onAdd}
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
           setOrderRebuild={setOrderRebuild}
-         
         />
       ) : main_path.includes("/restaurant") ? (
         <NavbarRestaurant
@@ -159,14 +154,13 @@ function App() {
           open={open}
           handleLogOutClick={handleLogOutClick}
           handleCloseLogOut={handleCloseLogOut}
-          handlerLogoutRequest={handlerLogoutRequest}
+          handleLogOutRequest={handleLogOutRequest}
           cartItems={cartItems}
           onAdd={onAdd}
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
           setOrderRebuild={setOrderRebuild}
-  
         />
       ) : (
         <NavbarOthers
@@ -177,14 +171,13 @@ function App() {
           open={open}
           handleLogOutClick={handleLogOutClick}
           handleCloseLogOut={handleCloseLogOut}
-          handlerLogoutRequest={handlerLogoutRequest}
+          handleLogOutRequest={handleLogOutRequest}
           cartItems={cartItems}
           onAdd={onAdd}
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
           setOrderRebuild={setOrderRebuild}
-        
         />
       )}
 
@@ -197,14 +190,12 @@ function App() {
         </Route>
         <Route path="/orders">
           <OrdersPage
-           orderRebuild={orderRebuild}
-           setOrderRebuild={setOrderRebuild}
-           />
-         </Route>
-         <Route path="/member-page">
-           <MemberPage  
-        
-            />
+            orderRebuild={orderRebuild}
+            setOrderRebuild={setOrderRebuild}
+          />
+        </Route>
+        <Route path="/member-page">
+          <MemberPage />
         </Route>
         <Route path="/help">
           <HelpPage />
@@ -216,16 +207,15 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
-
       <Footer />
 
       <AuthenticationModal
-        loginOpen={loginOpen}
-        handleLoginOpen={handleLoginOpen}
-        handleLoginClose={handleLoginClose}
         signUpOpen={signUpOpen}
         handleSignUpOpen={handleSignUpOpen}
         handleSignUpClose={handleSignUpClose}
+        loginOpen={loginOpen}
+        handleLoginOpen={handleLoginOpen}
+        handleLoginClose={handleLoginClose}
       />
     </Router>
   );

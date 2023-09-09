@@ -21,6 +21,7 @@ export interface HomePageState {
   bestBoArticles: BoArticle[];
   trendBoArticles: BoArticle[];
   newsBoArticles: BoArticle[];
+  events: Event[];
 }
 
 /** RESTAURANT PAGE */

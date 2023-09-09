@@ -1,11 +1,10 @@
-export interface MeLiked {
+export interface MeLiked{
   mb_id: string;
   like_ref_id: string;
   my_favorite: boolean;
 }
 
-export interface Product {
-	mb_images: any;
+export interface Product{
   _id: string;
   product_name: string;
   product_collection: string;
@@ -22,5 +21,5 @@ export interface Product {
   restaurant_mb_id: string;
   createdAt: Date;
   updatedAt: Date;
-  me_liked: MeLiked[];
+  me_liked: MeLiked[]; //MeLiked
 }

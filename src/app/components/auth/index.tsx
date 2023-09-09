@@ -6,10 +6,10 @@ import Fade from "@material-ui/core/Fade";
 import { Fab, Stack, TextField } from "@mui/material";
 import styled from "styled-components";
 import LoginIcon from "@mui/icons-material/Login";
+import { sweetErrorHandling } from "../../../lib/sweetAlert";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import MemberApiService from "../../apiServices/memberApiServices";
-import { sweetErrorHandling } from "../../../lib/sweetAlert";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -35,82 +35,81 @@ const ModalImg = styled.img`
 `;
 
 export default function AuthenticationModal(props: any) {
- /** INITIALIZATIONS */
- const classes = useStyles();
- const [mb_nick, set_mb_nick] = useState<string>("");
- const [mb_phone, set_mb_phone] = useState<number>(0);
- const [mb_password, set_mb_password] = useState<string>("");
+  /** iNITIALIZATION **/
+  const classes = useStyles();
+  const [mb_nick, set_mb_nick] = useState<string>("");
+  const [mb_password, set_mb_password] = useState<string>("");
+  const [mb_phone, set_mb_phone] = useState<number>(0);
+  /** HANDLERS **/
+  const handleUsername = (e: any) => {
+    set_mb_nick(e.target.value);
+  };
 
- /** HANDLERS */
- const handleUsername = (e: any) => {
-  set_mb_nick(e.target.value);
- };
- const handlePhone = (e: any) => {
-  set_mb_phone(e.target.value);
- };
- const handlePassword = (e: any) => {
-  set_mb_password(e.target.value);
- };
+  const handlePhone = (e: any) => {
+    set_mb_phone(e.target.value);
+  };
 
- const handleSignupRequest = async () => {
-   try {
-     const is_fulfilled =
-       mb_nick !== "" && mb_password !== "" && mb_phone !== 0;
-     assert.ok(is_fulfilled, Definer.input_err1);
+  const handlePassword = (e: any) => {
+    set_mb_password(e.target.value);
+  };
 
-     const signup_data = {
-       mb_nick: mb_nick,
-       mb_phone: mb_phone,
-       mb_password: mb_password,
-     };
+  const handleSignupRequest = async () => {
+    try {
+      const is_fulfilled = mb_nick != "" && mb_password != "" && mb_phone != 0;
+      assert.ok(is_fulfilled, Definer.input_err1);
 
-     const memberApiService = new MemberApiService();
-     await memberApiService.signupRequest(signup_data);
+      const signup_data = {
+        mb_nick: mb_nick,
+        mb_phone: mb_phone,
+        mb_password: mb_password,
+      };
 
-     props.handleSignUpClose();
-     window.location.reload();
-   } catch (error) {
-     console.log(error);
-     sweetErrorHandling(error).then();
-   }
- };
+      const memberApiService = new MemberApiService();
+      await memberApiService.signupRequest(signup_data);
 
- const handleLoginRequest = async () => {
-   try {
-     const is_fulfilled = mb_nick !== "" && mb_password !== "";
-     assert.ok(is_fulfilled, Definer.input_err1);
+      props.handleSignUpClose();
+      window.location.reload();
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
-     const login_data = {
-       mb_nick: mb_nick,
-       mb_password: mb_password,
-     };
+  const handleLoginRequest = async () => {
+    try {
+      const is_fulfilled = mb_nick != "" && mb_password != "";
+      assert.ok(is_fulfilled, Definer.input_err1);
 
-     const memberApiService = new MemberApiService();
-     await memberApiService.loginRequest(login_data);
+      const login_data = {
+        mb_nick: mb_nick,
+        mb_password: mb_password,
+      };
 
-     props.handleLoginClose();
-     window.location.reload();
-   } catch (error) {
-     console.log(error);
-     props.handleLoginClose();
-     sweetErrorHandling(error).then();
-   }
- };
+      const memberApiService = new MemberApiService();
+      await memberApiService.loginRequest(login_data);
 
+      props.handleLoginClose();
+      window.location.reload();
+    } catch (err: any) {
+      console.log(err);
+      props.handleLoginClose();
+      sweetErrorHandling(err).then();
+    }
+  };
 
- const passwordKeyPressHandler = (e: any) => {
-  if (e.key == "Enter" && props.signUpOpen) {
-    handleSignupRequest().then();
-  } else if (e.key == "Enter" && props.loginOpen) {
-    handleLoginRequest().then();
-  }
- };
+  const passwordKeyPressHandler = (e: any) => {
+    if (e.key === "Enter" && props.signUpOpen) {
+      handleSignupRequest().then();
+    } else if (e.key === "Enter" && props.loginOpen) {
+      handleLoginRequest().then();
+    }
+  };
 
   return (
     <div>
       {/*@ts-ignore*/}
       <Modal
-        aria-labelledby="transition-modal-title"
+        aria-aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={props.signUpOpen}
@@ -127,7 +126,7 @@ export default function AuthenticationModal(props: any) {
             direction={"row"}
             sx={{ width: "800px" }}
           >
-          <ModalImg src={"/auth/password.jpeg"} alt="camera" />
+            <ModalImg src="/auth/password.jpeg" alt="camera" />
             <Stack sx={{ marginLeft: "69px", alignItems: "center" }}>
               <h2>SignUp Form</h2>
               <TextField
@@ -146,10 +145,10 @@ export default function AuthenticationModal(props: any) {
               />
               <TextField
                 onChange={handlePassword}
-                onKeyPress={passwordKeyPressHandler}
                 id="outlined-basic"
                 label="password"
                 variant="outlined"
+                onKeyDown={passwordKeyPressHandler}
               />
               <Fab
                 onClick={handleSignupRequest}
@@ -202,10 +201,10 @@ export default function AuthenticationModal(props: any) {
               />
               <TextField
                 onChange={handlePassword}
-                onKeyPress={passwordKeyPressHandler}
                 id="outlined-basic"
                 label="password"
                 variant="outlined"
+                onKeyDown={passwordKeyPressHandler}
               />
               <Fab
                 onClick={handleLoginRequest}

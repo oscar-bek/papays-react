@@ -14,40 +14,39 @@ class ProductApiService {
 
   async getTargetProducts(data: ProductSearchObj) {
     try {
-      const url = "/products",
-        result = await axios.post(this.path + url, data, {
-          withCredentials: true,
-        });
-      assert.ok(result, Definer.general_err1);
+      const url = "/products";
+      const result = await axios.post(this.path + url, data, {
+        withCredentials: true,
+      });
+      console.log("state::::::: getTargetProducts ::::", result.data.state);
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
 
-      console.log("result:::", result.data.state);
       const products: Product[] = result.data.data;
-
       return products;
-    } catch (error: any) {
-      console.log("ERROR ::: getTargetProduct", error.message);
-      throw error;
+    } catch (err: any) {
+      console.log(`ERROR:getTargetProducts: ${err.message}`);
+      throw err;
     }
   }
 
+  async getChosenDish(dish_id:string) {
+    try {
+      const url = `/products/${dish_id}`;
+      const result = await axios.get(this.path + url, {
+        withCredentials: true,
+      });
+      console.log("state:: ::::: getChosenDish :::", result.data.state);
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
 
-async getChosenDish(dish_id: string) {
-  try {
-    const url = `/products/${dish_id}`,
-      result = await axios.get(this.path + url, { withCredentials: true });
-
-    assert.ok(result?.data, Definer.general_err1);
-    assert.ok(result?.data?.state != "fail", result?.data?.message);
-    console.log("state:::", result.data.state);
-
-    const product: Product = result.data.data;
-    return product;
-  } catch (error: any) {
-    console.log("ERROR ::: getChosenDish", error.message);
-    throw error;
+      const product: Product = result.data.data;
+      return product;
+    } catch (err: any) {
+      console.log(`ERROR: getChosenDish: ${err.message}`);
+      throw err;
+    }
   }
 }
-}
-
 
 export default ProductApiService;

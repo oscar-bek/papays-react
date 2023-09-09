@@ -24,7 +24,6 @@ const trendProductsRetriever = createSelector(
   (trendProducts) => ({
     trendProducts,
   })
-  
 );
 
 export function BestDishes() {
